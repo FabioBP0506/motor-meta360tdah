@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor Formspree para Motor360</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--navy-900:#0a1628;--navy-800:#0f2040;--navy-700:#142952;--navy-600:#1a3468;--coral:#f4622a;--orange:#f9a03f;--text:#e2e8f0;--muted:#94a3b8}
+    body{font-family:'Segoe UI',sans-serif;background:var(--navy-900);color:var(--text);min-height:100vh;padding:40px 20px}
+    .container{max-width:820px;margin:0 auto}
+    .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+    .logo{font-size:18px;font-weight:700;letter-spacing:.5px}
+    .logo span{color:var(--orange)}
+    .back-link{color:var(--muted);font-size:13px;text-decoration:none;border:1px solid var(--navy-600);padding:6px 14px;border-radius:6px}
+    .back-link:hover{color:var(--text);border-color:var(--orange)}
+    h1{font-size:26px;font-weight:700;margin-bottom:6px}
+    h1 span{color:var(--orange)}
+    .subtitle{color:var(--muted);font-size:14px;margin-bottom:28px}
+    .card{background:var(--navy-800);border:1px solid var(--navy-600);border-radius:12px;padding:24px;margin-bottom:20px}
+    .card-label{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    textarea{width:100%;background:var(--navy-900);color:var(--text);border:1px solid var(--navy-600);border-radius:8px;padding:14px;font-size:13px;font-family:'Courier New',monospace;resize:vertical;line-height:1.6}
+    textarea:focus{outline:none;border-color:var(--orange)}
+    #entrada{height:220px}
+    #resultado{height:260px}
+    .btn-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+    .btn{padding:10px 24px;border:none;border-radius:7px;cursor:pointer;font-size:14px;font-weight:600}
+    .btn-primary{background:var(--orange);color:var(--navy-900)}
+    .btn-primary:hover{background:var(--coral)}
+    .btn-secondary{background:transparent;color:var(--muted);border:1px solid var(--navy-600)}
+    .btn-copy{background:var(--navy-700);color:var(--text);border:1px solid var(--navy-600)}
+    #aviso{font-size:13px;color:#f87171;margin-top:10px;min-height:18px}
+    #saida{display:none}
+    .badge{display:inline-block;padding:2px 10px;border-radius:99px;font-size:11px;font-weight:700;margin-left:8px}
+    .badge-ok{background:#064e3b;color:#6ee7b7}
+    .badge-err{background:#450a0a;color:#fca5a5}
+    .campos-info{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.8}
+    .campos-info strong{color:var(--text)}
+    .divider{border:none;border-top:1px solid var(--navy-600);margin:20px 0}
+    .format-box{background:var(--navy-900);border:1px solid var(--navy-600);border-radius:8px;padding:14px;font-size:12px;font-family:monospace;color:var(--muted);line-height:1.9;margin-top:10px}
+    .format-box .field{color:var(--orange)}
+    .format-box .value{color:#7dd3fc}
+    .copy-toast{position:fixed;bottom:30px;right:30px;background:#064e3b;color:#6ee7b7;padding:12px 22px;border-radius:8px;font-size:14px;font-weight:600;opacity:0;transition:.3s;pointer-events:none}
+    .copy-toast.show{opacity:1}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="topbar">
+    <div class="logo">META<span>360</span>TDAH</div>
+    <a href="/" class="back-link">&#8592; Voltar ao Motor</a>
+  </div>
+  <h1>Conversor <span>Formspree</span> &#8594; Motor360</h1>
+  <p class="subtitle">Cole o e-mail bruto recebido do Formspree. O conversor transforma automaticamente no formato aceito pelo Motor de Leitura.</p>
+  <div class="card">
+    <div class="card-label">1. Cole o e-mail bruto do Formspree</div>
+    <textarea id="entrada" placeholder="Cole aqui o conte&#250;do completo do e-mail recebido do Formspree..."></textarea>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="converter()">&#9654; Converter</button>
+      <button class="btn btn-secondary" onclick="limpar()">Limpar</button>
+    </div>
+    <div id="aviso"></div>
+  </div>
+  <div id="saida">
+    <div class="card">
+      <div class="card-label">2. Resultado &#8212; copie e cole no Motor360 <span id="badge-status" class="badge"></span></div>
+      <textarea id="resultado" readonly></textarea>
+      <div class="btn-row">
+        <button class="btn btn-copy" onclick="copiar()">&#128203; Copiar resultado</button>
+        <a href="/" class="btn btn-primary" style="text-decoration:none;display:inline-flex;align-items:center">&#8594; Ir para o Motor</a>
+      </div>
+      <div id="campos-detectados" class="campos-info"></div>
+    </div>
+  </div>
+  <hr class="divider">
+  <div class="card">
+    <div class="card-label">Formato esperado pelo Motor360</div>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:10px">O motor le campos no formato <code style="color:var(--orange)">* campo</code> seguido do valor na linha de baixo.</p>
+    <div class="format-box">
+      <span class="field">* _subject</span><br><span class="value">Novo resultado - F-Medicacao</span><br>
+      <span class="field">* id_formulario</span><br><span class="value">F_MEDICACAO</span><br>
+      <span class="field">* nome_crianca</span><br><span class="value">Nome da crianca</span><br>
+      <span class="field">* responsavel</span><br><span class="value">Mae e pai</span><br>
+      <span class="field">* idade</span><br><span class="value">11</span><br>
+      <span class="field">* periodo_observado</span><br><span class="value">Ultimos 14 dias</span><br>
+      <span class="field">* usa_medicacao</span><br><span class="value">Sim</span><br>
+      <span class="field">* mudanca_recente</span><br><span class="value">Sim</span><br>
+      <span class="field">* alertas_resumo</span><br><span class="value">Perda importante de apetite</span><br>
+      <span class="field">* med_01</span><br><span class="value">3</span><br>
+      <span class="field">* med_02</span><br><span class="value">3</span><br>
+      <span style="color:var(--muted)">... med_03, med_04, med_05</span>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:10px">Outros pilares: <strong style="color:var(--text)">cas_01-05</strong> (Casa) | <strong style="color:var(--text)">esc_01-05</strong> (Escola) | <strong style="color:var(--text)">soc_01-05</strong> (Social) | <strong style="color:var(--text)">aut_01-05</strong> (Autonomia)</p>
+  </div>
+</div>
+<div class="copy-toast" id="toast">&#10003; Copiado!</div>
+<script>
+  var ORDEM = ['_subject','id_formulario','nome_crianca','responsavel','idade','periodo_observado','usa_medicacao','mudanca_recente','alertas_resumo','cas_01','cas_02','cas_03','cas_04','cas_05','med_01','med_02','med_03','med_04','med_05','esc_01','esc_02','esc_03','esc_04','esc_05','soc_01','soc_02','soc_03','soc_04','soc_05','aut_01','aut_02','aut_03','aut_04','aut_05'];
+  var IGNORAR = {'_status':1,'resultado_nivel':1,'resultado_pontuacao':1,'resultado_conduta':1,'resultado_interpretacao':1,'resultado_reavaliacao':1,'nome_formulario':1,'alertas':1};
+  function parseEmail(raw) {
+    var obj = {};
+    var semData = raw.replace(/^[A-Z][a-z]{2,8}s+d{1,2},s+d{4},.*[
+
+]+/, '').trim();
+    if (semData.indexOf('* ') !== -1) {
+      var linhas = semData.split('
+').map(function(l){return l.trim();}).filter(function(l){return l;});
+      var chave = null;
+      for (var i=0;i<linhas.length;i++) {
+        if (linhas[i].startsWith('* ')) { chave = linhas[i].slice(2).trim().replace(/-/g,'_'); obj[chave]=''; }
+        else if (chave) { var limpo=linhas[i].replace(/_status/g,'').trim(); if(limpo) obj[chave]=obj[chave]?obj[chave]+' '+limpo:limpo; }
+      }
+      return obj;
+    }
+    var blocos = semData.split(/
+s*
+/);
+    if (blocos.length >= 2) {
+      for (var i=0;i<blocos.length-1;i+=2) {
+        var chave=blocos[i].trim().replace(/-/g,'_');
+        var valor=blocos[i+1].trim();
+        if (chave&&valor&&!chave.includes(' ')&&!/^[A-Z]/.test(chave)) obj[chave]=valor;
+      }
+    }
+    if (Object.keys(obj).length===0) {
+      var linhas=semData.split('
+').map(function(l){return l.trim();}).filter(function(l){return l;});
+      for (var i=0;i<linhas.length-1;i+=2) {
+        var chave=linhas[i].replace(/-/g,'_');
+        var valor=linhas[i+1];
+        if (chave&&valor&&!chave.includes(' ')&&!/^[A-Z]/.test(chave)) obj[chave]=valor;
+      }
+    }
+    return obj;
+  }
+  function converter() {
+    var raw=document.getElementById('entrada').value.trim();
+    var aviso=document.getElementById('aviso');
+    aviso.textContent='';
+    if (!raw){aviso.textContent='&#9888; Cole o e-mail antes de converter.';return;}
+    var obj=parseEmail(raw);
+    if (Object.keys(obj).length===0){aviso.textContent='&#9888; Nao foi possivel identificar os campos. Verifique o e-mail.';return;}
+    var saida='';
+    for (var i=0;i<ORDEM.length;i++){var k=ORDEM[i];if(obj[k]!==undefined&&obj[k]!=='')saida+='* '+k+'
+'+obj[k]+'
+';}
+    for (var k in obj){if(ORDEM.indexOf(k)===-1&&!IGNORAR[k]&&obj[k]!=='')saida+='* '+k+'
+'+obj[k]+'
+';}
+    document.getElementById('resultado').value=saida.trim();
+    document.getElementById('saida').style.display='block';
+    var badge=document.getElementById('badge-status');
+    var temId=!!obj['id_formulario'];
+    var temCampos=ORDEM.filter(function(k){return /_(0[1-5])$/.test(k)&&obj[k];}).length;
+    if(temId&&temCampos>0){badge.textContent='Pronto para o Motor';badge.className='badge badge-ok';}
+    else{badge.textContent='Verifique os campos';badge.className='badge badge-err';}
+    var total=Object.keys(obj).length;
+    var pts=ORDEM.filter(function(k){return /_(0[1-5])$/.test(k)&&obj[k];});
+    document.getElementById('campos-detectados').innerHTML='<strong>'+total+'</strong> campos detectados &bull; <strong>'+pts.length+'</strong> campos de pontuacao &bull; Formulario: <strong>'+(obj['id_formulario']||'nao identificado')+'</strong>';
+    document.getElementById('saida').scrollIntoView({behavior:'smooth'});
+  }
+  function limpar(){document.getElementById('entrada').value='';document.getElementById('aviso').textContent='';document.getElementById('saida').style.display='none';}
+  function copiar(){
+    var ta=document.getElementById('resultado');ta.select();
+    try{navigator.clipboard.writeText(ta.value);}catch(e){document.execCommand('copy');}
+    var toast=document.getElementById('toast');toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},2000);
+  }
+</script>
+</body>
+</html>
