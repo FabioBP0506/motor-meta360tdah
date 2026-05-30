@@ -530,11 +530,8 @@ function parsePayload(text) {
     
     // 4. Se tivermos uma chave ativa, esta linha é o seu valor
     if (currentKey) {
-      if (data[currentKey]) {
-        data[currentKey] += '\n' + line;
-      } else {
-        data[currentKey] = line;
-      }
+      data[currentKey] = line;
+      currentKey = null; // Evita que campos desconhecidos seguintes vazem para o valor desta chave
     }
   }
   
@@ -963,9 +960,12 @@ const EXEMPLOS = [
   // Exemplo Medicação (Suporte Prioritário com Alerta)
   `* _subject\nNovo resultado - F-Medicação\n* id_formulario\nF_MEDICACAO\n* med_01\n3\n* med_02\n5\n* med_03\n4\n* med_04\n2\n* med_05\n3\n* _status\nsuccess`,
   
-  // Exemplo Real com Quebras de Linha e Sem Prefixo (Formato Bare-Key do Usuário)
+  // Exemplo Real com Quebras de Linha e Sem Prefixo (Formato Bare-Key do Usuário - Medicação)
   `May 28, 2026, 03:50\n_subject\n\nNovo resultado - F-Medicação\nalertas\n\n  - "Sonolência intensa"\n\nalertas_resumo\n\nSonolência intensa\nid_formulario\n\nF_MEDICACAO\nidade\n\n11\nmed_01\n\n3\n\nmed_02\n\n2\n\nmed_03\n\n2\n\nmed_04\n\n3\n\nmed_05\n\n3\n\nmudanca_recente\n\nSim\nnome_crianca\n\nldjfsdlçf\nnome_formulario\n\nF-Medicação\nperiodo_observado\n\nÚltimos 7 dias\nresponsavel\n\nffff\nusa_medicacao\n\nSim\n_status\n\npessoafabio@outlook.com:\nopen`,
   
+  // Exemplo Real com Quebras de Linha e Sem Prefixo (Formato Bare-Key do Usuário - Social com Campos Ocultos)
+  `May 29, 2026, 18:34\n_subject\n\nNovo resultado - F-Social META360TDAH\nalertas\n\nMachucou outra criança, Recebeu queixa formal da escola, Evita escola ou atividades por medo ou rejeição, Família evita sair por receio do comportamento\n\nalertas_resumo\n\nMachucou outra criança, Recebeu queixa formal da escola, Evita escola ou atividades por medo ou rejeição, Família evita sair por receio do comportamento\nid_formulario\n\nF_SOCIAL\nlocal_conflitos\n\nCasa\nnome_crianca\n\nJjk\nnome_formulario\n\nF-Social\nresultado_conduta\n\nAcionar o Plano de Regulação e Reparação.\nresultado_interpretacao\n\nO pilar social/emocional já apresenta prejuízo claro.\nresultado_nivel\n\nNível 3 — necessidade de suporte prioritário\nresultado_pontuacao\n\n17/25\nresultado_reavaliacao\n\n14 dias\nsoc_01\n\n3\nsoc_02\n\n4\nsoc_03\n\n3\nsoc_04\n\n4\nsoc_05\n\n3\ntipo_dificuldade\n\nAgressividade física\n_status\n\npessoafabio@outlook.com:\nopen`,
+
   // Exemplo Escola (Suporte Moderado)
   `* _subject\nNovo resultado - F-Escola\n* id_formulario\nF_ESCOLA\n* esc_01\n3\n* esc_02\n4\n* esc_03\n2\n* esc_04\n3\n* esc_05\n1\n* _status\nsuccess`,
   
