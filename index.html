@@ -86,13 +86,30 @@
     .empty-state-icon{font-size:2rem;margin-bottom:.75rem;opacity:.4}
     .empty-state-title{font-size:.95rem;font-weight:700;color:var(--slate-400);margin-bottom:.4rem}
     .empty-state-sub{font-size:.82rem;line-height:1.6}
-    .esc-banner{background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.3);border-radius:9px;padding:10px 14px;color:#fdba74;font-size:.82rem;line-height:1.55;display:none}
+    .esc-banner{background:rgba(251,146,60,.1);border:1px solid rgba(251,146,60,.3);border-radius:9px;padding:10px 14px;color:#fdba74;font-size:.82rem;line-height:1.55;display:none;margin-bottom:12px}
     .esc-banner.show{display:block}
-    .alert-banner{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px 14px;color:#fca5a5;font-size:.82rem;line-height:1.55;display:none}
+    .alert-banner{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:9px;padding:10px 14px;color:#fca5a5;font-size:.82rem;line-height:1.55;display:none;margin-bottom:12px}
     .alert-banner.show{display:block}
     @media(max-width:900px){main{grid-template-columns:1fr}.result-panel{position:static}}
     @media(max-width:600px){.app{width:calc(100% - 24px)}h1{font-size:1.8rem}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Estilos para a aba de pontuação */
+    .score-list{display:grid;gap:12px;margin-top:10px}
+    .score-item{background:rgba(255,255,255,.02);border:1px solid var(--panel-border);border-radius:8px;padding:12px}
+    .score-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+    .score-item-label{font-size:.82rem;font-weight:700;color:var(--white)}
+    .score-item-value{font-size:.82rem;font-weight:700;padding:2px 8px;border-radius:4px}
+    .score-item-desc{font-size:.76rem;color:var(--text-muted);line-height:1.4}
+    .score-bar-bg{height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;margin-top:8px}
+    .score-bar-fg{height:100%;border-radius:3px;transition:width .4s ease}
+    .score-high{background:#f4622a;color:#fff}
+    .score-mod{background:#f9a03f;color:#fff}
+    .score-low{background:#546990;color:#fff}
+
+    /* Moduladores lista */
+    .mod-item{background:rgba(255,255,255,.02);border:1px solid var(--panel-border);border-radius:8px;padding:10px 12px;margin-top:6px;font-size:.82rem;line-height:1.5;color:var(--slate-100);display:flex;align-items:flex-start;gap:8px}
+    .mod-item-bullet{color:var(--orange);font-weight:bold;font-size:.9rem}
   </style>
 </head>
 <body>
@@ -287,7 +304,7 @@ const PILARES = {
       "M1,M2,M4":{codigo:"PM17",leitura:"Efeito incerto, oscilante e prejuízo persistente.",acao:"Fazer leitura funcional por ambiente e horário."},
       "M1,M2,M5":{codigo:"PM18",leitura:"Família percebe efeito instável e não sabe conduzir.",acao:"Revisar uso, horários, expectativa de duração e critério de resposta."},
       "M1,M3,M4":{codigo:"PM19",leitura:"Benefício duvidoso com possível custo funcional.",acao:"Considerar avaliação clínica mais próxima se houver piora recente."},
-      "M1,M3,M5":{codigo:"PM20",leitura:"Insegurança alta por possível efeito adverso.",acao:"Orientar registro objetivo; evitar decisões baseadas só em impressão do dia."},
+      "M1,M3,M5":{codigo:"PM20",leitura:"Insegurança alta por possível efeito adverso.",acao:"Orientar registro objective; evitar decisões baseadas só em impressão do dia."},
       "M1,M4,M5":{codigo:"PM21",leitura:"Tratamento não convence e prejuízo continua.",acao:"Reavaliar metas: o que se espera da medicação e o que exige intervenção não medicamentosa."},
       "M2,M3,M4":{codigo:"PM22",leitura:"Oscilação, colateral e prejuízo coexistem.",acao:"Alta prioridade: mapear cronologia e discutir revisão clínica."},
       "M2,M3,M5":{codigo:"PM23",leitura:"Família insegura por oscilação e sintomas associados.",acao:"Diário por horário + checagem de adesão + orientação de acionamento médico."},
@@ -406,275 +423,562 @@ const PILARES = {
       "A2,A3":{codigo:"PA10",leitura:"Organização e memória dependem dos pais.",acao:"Checklist diário e conferência posterior."},
       "A2,A4":{codigo:"PA11",leitura:"Material e sequência estão desorganizados.",acao:"Criar rotina de organização em passos fixos."},
       "A2,A5":{codigo:"PA12",leitura:"Pais estão organizando demais.",acao:"Transferir uma etapa de organização para a criança."},
-      "A3,A4":{codigo:"PA13",leitura:"Esquecimento associado a falha de planejamento.",acao:"Sistema externo de prazos + sequência visual."},
-      "A3,A5":{codigo:"PA14",leitura:"Pais compensam esquecimentos cronicamente.",acao:"Reduzir lembrete verbal e usar memória externa."},
-      "A4,A5":{codigo:"PA15",leitura:"Pais assumem porque planejamento da criança falha.",acao:"Escada de autonomia focada em sequência de passos."},
-      "A1,A2,A3":{codigo:"PA16",leitura:"Início, organização e memória dependem do adulto.",acao:"Uma rotina executiva por vez."},
-      "A1,A2,A4":{codigo:"PA17",leitura:"Início, material e sequência frágeis.",acao:"Preparar ambiente + checklist + início assistido."},
-      "A1,A2,A5":{codigo:"PA18",leitura:"Adultos organizam e iniciam pela criança.",acao:"Definir o que o adulto deixará de fazer nesta semana."},
-      "A1,A3,A4":{codigo:"PA19",leitura:"A criança trava por falha executiva ampla.",acao:"Tarefa curta com suporte visual e temporizador."},
-      "A1,A3,A5":{codigo:"PA20",leitura:"Pais compensam início e memória.",acao:"Transferir lembrete para sistema externo, não para bronca."},
-      "A1,A4,A5":{codigo:"PA21",leitura:"Pais substituem porque iniciar e sequenciar é difícil.",acao:"Adulto faz junto apenas o primeiro passo e retira ajuda."},
-      "A2,A3,A4":{codigo:"PA22",leitura:"Organização, memória e planejamento pressionados.",acao:"Criar central executiva: agenda, checklist e conferência."},
-      "A2,A3,A5":{codigo:"PA23",leitura:"Pais viraram sistema de organização e memória.",acao:"Redução de ajuda adulta com checklist compartilhado."},
-      "A2,A4,A5":{codigo:"PA24",leitura:"Pais organizam porque a sequência falha.",acao:"Ensinar sequência de organização em 3 passos."},
-      "A3,A4,A5":{codigo:"PA25",leitura:"Pais compensam memória e planejamento.",acao:"Sistema de memória externa + escada de autonomia."},
-      "A1,A2,A3,A4":{codigo:"PA26",leitura:"Funções executivas operacionais pressionadas.",acao:"Mostrar à família que há dependência funcional mesmo que não perceba."},
-      "A1,A2,A3,A5":{codigo:"PA27",leitura:"Pais percebem dependência em início, organização e memória.",acao:"Transferir uma microhabilidade por ciclo."},
-      "A1,A2,A4,A5":{codigo:"PA28",leitura:"Pais substituem início, material e planejamento.",acao:"Escada de autonomia com início assistido e checklist."},
-      "A1,A3,A4,A5":{codigo:"PA29",leitura:"Dependência ampla em iniciar, lembrar e planejar.",acao:"Não cobrar autonomia total; treinar sequência mínima."},
-      "A2,A3,A4,A5":{codigo:"PA30",leitura:"Pais sustentam organização, memória e planejamento.",acao:"Reduzir carga parental com sistema externo e conferência posterior."},
-      "A1,A2,A3,A4,A5":{codigo:"PA31",leitura:"Pilar Autonomia em suporte intensivo.",acao:"Parar de substituir e começar a treinar em microetapas."}
+      "A3,A4":{codigo:"PA13",leitura:"Esquecimento associado a falha de planejamento.",acao:"Memória externa visual e fracionamento de tempo."},
+      "A3,A5":{codigo:"PA14",leitura:"A criança esquece e os pais assumem a responsabilidade.",acao:"Usar memória externa e estabelecer consequências combinadas."},
+      "A4,A5":{codigo:"PA15",leitura:"Dificuldade em sequenciar e pais realizam a tarefa pela criança.",acao:"Aplicar Escada de Autonomia focada em planejamento visual."},
+      "A1,A2,A3":{codigo:"PA16",leitura:"Criança não inicia, não organiza e esquece combinados.",acao:"Início Assistido combinado com checklist de organização e memória."},
+      "A1,A2,A4":{codigo:"PA17",leitura:"Início, organização e planejamento prejudicados.",acao:"Fracionar tarefas em etapas visuais e apoiar os primeiros minutos."},
+      "A1,A2,A5":{codigo:"PA18",leitura:"Dependência total do adulto para iniciar e organizar tarefas.",acao:"Iniciar com ajuda mínima no início e transferir organização gradual."},
+      "A1,A3,A4":{codigo:"PA19",leitura:"Dificuldade para iniciar, lembrar e sequenciar atividades.",acao:"Memória externa visual, alarmes e apoio para os primeiros passos."},
+      "A1,A3,A5":{codigo:"PA20",leitura:"Criança esquece de iniciar e pais assumem para evitar atrasos.",acao:"Substituir comandos verbais por checklists e alarmes visuais."},
+      "A1,A4,A5":{codigo:"PA21",leitura:"Dificuldade de planejar e iniciar, gerando intervenção direta dos pais.",acao:"Definir o primeiro passo concreto e cronometrar tempo de início."},
+      "A2,A3,A4":{codigo:"PA22",leitura:"Desorganização de materiais, esquecimento e planejamento falho.",acao:"Criar central executiva: pasta de tarefas, checklist e calendário."},
+      "A2,A3,A5":{codigo:"PA23",leitura:"Pais organizam e lembram de tudo para evitar esquecimentos.",acao:"Implementar conferência posterior baseada em checklist e retirar lembretes verbais."},
+      "A2,A4,A5":{codigo:"PA24",leitura:"Pais planejam e organizam tudo para suprir a falta de autonomia.",acao:"Transferir uma pequena responsabilidade de planejamento semanal."},
+      "A3,A4,A5":{codigo:"PA25",leitura:"Esquecimento, falha de planejamento e sobrecarga de controle parental.",acao:"Quadro visual de rotina + alarmes + conferência compartilhada."},
+      "A1,A2,A3,A4":{codigo:"PA26",leitura:"Dificuldades amplas de execução (início, organização, memória e planejamento).",acao:"Implementar Central Executiva e focar exclusivamente no início assistido por 7 dias."},
+      "A1,A2,A3,A5":{codigo:"PA27",leitura:"Pais assumem toda a carga executiva (início, organização e lembretes).",acao:"Reduzir comandos verbais, externalizar rotinas e criar lista de microtarefas."},
+      "A1,A2,A4,A5":{codigo:"PA28",leitura:"Pais executam para compensar falhas de início, organização e planejamento.",acao:"Aplicar técnica da tarefa de 2 minutos e checklist de material."},
+      "A1,A3,A4,A5":{codigo:"PA29",leitura:"Dependência para iniciar, lembrar e planejar tarefas.",acao:"Externalizar toda a sequência visualmente e usar cronômetro para transições."},
+      "A2,A3,A4,A5":{codigo:"PA30",leitura:"Sobrecarga parental na organização, memória e planejamento da rotina.",acao:"Criar rotina de conferência posterior diária com checklist visual."},
+      "A1,A2,A3,A4,A5":{codigo:"PA31",leitura:"Pilar Autonomia em suporte intensivo. Alta dependência executiva e sobrecarga familiar.",acao:"Reduzir o controle verbal adulto + Central Executiva + conferência compartilhada de 5 min. Reavaliar em 7 dias."}
     },
-    moduladores:{A1:"Incluir primeiro passo concreto.",A2:"Introduzir checklist de materiais.",A3:"Usar memória externa para combinados e prazos.",A4:"Dividir tarefas em sequência curta.",A5:"Discutir redução gradual de ajuda adulta."},
-    estrategias:{A1:["Início Assistido","Primeiro passo concreto","Scaffolding / andaime","Tarefa de 2 minutos"],A2:["Organização de Materiais","Checklist visual","Central Executiva","Conferência posterior"],A3:["Sistema de Memória Externa","Externalização da informação","Central Executiva","Checklist visual"],A4:["Sequência e Tempo","Tempo externo","Tarefa de 5 minutos","Preparação ambiental"],A5:["Escada de autonomia","Transferência gradual","Microhabilidade","Ajuda mínima necessária","Conferência posterior"]}
+    moduladores:{A1:"Facilitar o início da tarefa: início assistido ou primeiro passo concreto.",A2:"Externalizar organização: checklist de material ou central executiva.",A3:"Reduzir esquecimentos: alarmes ou memórias externas.",A4:"Dividir em passos curtos: fracionamento de tempo ou sequência visual.",A5:"Retirar ajuda gradualmente: escada de autonomia ou ajuda mínima."},
+    estrategias:{A1:["Início Assistido","Tarefa de 2 minutos","Primeiro passo concreto","Scaffolding / andaime"],A2:["Organização de Materiais","Checklist de material","Central Executiva"],A3:["Sistema de Memória Externa","Checklist visual","Alarmes e cronômetros"],A4:["Sequência e Tempo","Passos visuais","Divisão de tarefas"],A5:["Escada de Autonomia","Transferência gradual","Conferência posterior","Ajuda mínima necessária"]}
   }
 };
 
-const NIVEL_LABEL=["","Nível 1 — Manutenção ativa","Nível 2 — Suporte preventivo-focal","Nível 3 — Suporte prioritário","Nível 4 — Suporte intensivo"];
+// ─── TABS E ESTADOS ─────────────────────────────────────────────────────────
+let currentTab = 'leitura';
+let currentResultData = null;
 
-// ─── PARSER ROBUSTO ──────────────────────────────────────────────────────────
-// Linhas que o Formspree injeta e não são campos reais
-const LINHAS_LIXO = /^(_status|pessoafabio@|May\s+\d|[A-Z][a-z]+\s+\d{1,2},\s+\d{4})/i;
-// Chaves que não são dados de formulário
-const CHAVES_IGNORAR = /^(pessoafabio|_status|resultado_)/;
+function setTab(tabName, btn) {
+  currentTab = tabName;
+  
+  // Ocultar todas as abas
+  document.getElementById('tab-leitura').style.display = 'none';
+  document.getElementById('tab-pontuacao').style.display = 'none';
+  document.getElementById('tab-estrategias').style.display = 'none';
+  document.getElementById('tab-devolutiva').style.display = 'none';
+  
+  // Exibir aba ativa
+  document.getElementById('tab-' + tabName).style.display = 'block';
+  
+  // Tratar estado ativo no botão
+  const tabs = btn.parentNode.querySelectorAll('.tab');
+  tabs.forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
 
-function parsePayload(txt) {
-  const obj = {};
-  const raw = txt.replace(/^[A-Za-z]{3}\s+\d{1,2},\s+\d{4}.*[\n\r]+/, '').trim();
-  if (raw.indexOf('* ') !== -1) {
-    var lines = raw.split('\n').map(function(l){return l.trim();}).filter(function(l){return l;});
-    var key = null;
-    for (var i=0; i<lines.length; i++) {
-      if (lines[i].startsWith('* ')) {
-        key = lines[i].slice(2).trim().replace(/-/g,'_');
-      } else if (key) {
-        obj[key] = lines[i];
-        key = null;
+// ─── PROCESSADOR DE PAYLOADS ──────────────────────────────────────────────────
+function parsePayload(text) {
+  const lines = text.split('\n');
+  const data = {};
+  
+  const KNOWN_KEYS = new Set([
+    '_subject', 'id_formulario', 'idade', 'usa_medicacao', 'mudanca_recente',
+    'nome_crianca', 'nome_formulario', 'periodo_observado', 'responsavel',
+    'resultado_conduta', 'resultado_interpretacao', 'resultado_nivel',
+    'resultado_pontuacao', 'resultado_reavaliacao', '_status', 'alertas', 'alertas_resumo',
+    'cas_01', 'cas_02', 'cas_03', 'cas_04', 'cas_05',
+    'med_01', 'med_02', 'med_03', 'med_04', 'med_05',
+    'esc_01', 'esc_02', 'esc_03', 'esc_04', 'esc_05',
+    'soc_01', 'soc_02', 'soc_03', 'soc_04', 'soc_05',
+    'aut_01', 'aut_02', 'aut_03', 'aut_04', 'aut_05'
+  ]);
+
+  let currentKey = null;
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+    
+    // 1. Suporte para chaves precedidas por asteriscos (* nome_campo)
+    if (line.startsWith('*')) {
+      const cleaned = line.substring(1).trim();
+      if (cleaned.includes(':')) {
+        const parts = cleaned.split(':');
+        const key = parts[0].trim().toLowerCase();
+        const val = parts.slice(1).join(':').trim();
+        data[key] = val;
+        currentKey = null;
+      } else {
+        currentKey = cleaned.toLowerCase();
+      }
+      continue;
+    }
+    
+    // 2. Se a linha for exatamente uma das chaves conhecidas (sem '*' ou ':')
+    const lowercaseLine = line.toLowerCase();
+    if (KNOWN_KEYS.has(lowercaseLine)) {
+      currentKey = lowercaseLine;
+      continue;
+    }
+    
+    // 3. Suporte para chaves normais com dois pontos (nome_campo: valor)
+    if (line.includes(':')) {
+      const parts = line.split(':');
+      const possibleKey = parts[0].trim().toLowerCase();
+      const possibleVal = parts.slice(1).join(':').trim();
+      
+      if (KNOWN_KEYS.has(possibleKey) || /^[a-z0-9_]+$/.test(possibleKey)) {
+        data[possibleKey] = possibleVal;
+        currentKey = null;
+        continue;
       }
     }
-  } else {
-    var blocos = raw.split(/\n\s*\n/).map(function(b){return b.trim();}).filter(function(b){return b;});
-    var startIdx = 0;
-    for (var s=0; s<blocos.length; s++) {
-      if (/^[a-z_][a-z0-9_]*$/.test(blocos[s])) { startIdx = s; break; }
-    }
-    for (var i=startIdx; i<blocos.length-1; i+=2) {
-      var ch = blocos[i].trim().replace(/-/g,'_');
-      var vl = blocos[i+1].trim();
-      if (ch && vl && /^[a-z_][a-z0-9_]*$/.test(ch)) obj[ch] = vl;
-    }
-    if (Object.keys(obj).length === 0 && blocos.length >= 2) {
-      for (var i=0; i<blocos.length-1; i+=2) {
-        var ch = blocos[i].trim().replace(/-/g,'_');
-        var vl = blocos[i+1].trim();
-        if (ch && vl && ch.indexOf(' ')===-1) obj[ch] = vl;
+    
+    // 4. Se tivermos uma chave ativa, esta linha é o seu valor
+    if (currentKey) {
+      if (data[currentKey]) {
+        data[currentKey] += '\n' + line;
+      } else {
+        data[currentKey] = line;
       }
     }
   }
-  return obj;
-}
-
-function processarLogica(payload) {
-  const id = payload.id_formulario;
-  const pilar = PILARES[id];
-  if (!pilar) return null;
-  const pontuacoes = pilar.campos.map((c,i) => ({
-    item: pilar.itens[i], desc: pilar.descricoes[i], nota: parseInt(payload[c])||0
-  }));
-  const soma = pontuacoes.reduce((a,b)=>a+b.nota,0);
-  const nivel = soma<=9?1:soma<=14?2:soma<=19?3:4;
-  const altos = pontuacoes.filter(p=>p.nota>=4).map(p=>p.item).sort();
-  const moderados = pontuacoes.filter(p=>p.nota===3).map(p=>p.item);
-  const alertasRaw = payload.alertas_resumo||"";
-  const alertas = (alertasRaw && alertasRaw!=="Nenhum alerta selecionado") ? [alertasRaw] : [];
-  const chave = altos.length > 0 ? altos.join(",") : moderados.join(",");
-  const combinacao = pilar.combinacoes[chave]||pilar.combinacoes[""];
-  const blocos = [...new Set(altos.map(i=>pilar.blocos[i]).filter(Boolean))];
-  if(!blocos.length && moderados.length) blocos.push(pilar.blocos[moderados[0]]);
-  const estSet = new Set();
-  altos.forEach(i=>(pilar.estrategias[i]||[]).forEach(e=>estSet.add(e)));
-  if(!estSet.size) moderados.forEach(i=>(pilar.estrategias[i]||[]).forEach(e=>estSet.add(e)));
-  const modsAtivos = moderados.map(i=>pilar.moduladores[i]).filter(Boolean);
-  const prazo = nivel===4?"7 dias":nivel===3?"14 dias":nivel===2?"14 a 30 dias":"30 dias";
-  const escalonamentoClinico = id==="F_MEDICACAO"&&(nivel>=3||alertas.length>0);
-  return {
-    pilar,id,nivel,soma,altos,moderados,alertas,combinacao,blocos,
-    estrategias:[...estSet],modsAtivos,prazo,escalonamentoClinico,
-    nomeCrianca:payload.nome_crianca||"—",
-    responsavel:payload.responsavel||"—",
-    idade:payload.idade||"—",
-    periodo:payload.periodo_observado||"—",
-    usaMedicacao:payload.usa_medicacao||"—",
-    mudancaRecente:payload.mudanca_recente||"—",
-    pontuacoes
-  };
-}
-
-function gerarDevolutiva(r) {
-  const esc = r.escalonamentoClinico?`🔴 ESCALONAMENTO CLÍNICO OBRIGATÓRIO\nNão enviar sem revisão do Dr. Fabio Pessoa.\n\n`:"";
-  const alertStr = r.alertas.length?`⚠ ALERTA ATIVO: ${r.alertas.join("; ")}\n\n`:"";
-  const mods = r.modsAtivos.length?`\nMODULADORES ATIVOS\n${r.modsAtivos.map(m=>`• ${m}`).join("\n")}`:"";
-  const ests = r.estrategias.length?`\n\nESTRATÉGIAS DO GLOSSÁRIO\n${r.estrategias.map(e=>`• ${e}`).join("\n")}`:"";
-  return `RASCUNHO DE DEVOLUTIVA — META360TDAH
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Criança : ${r.nomeCrianca} (${r.idade})
-Responsável : ${r.responsavel}
-Pilar : ${r.pilar.nome}
-Período : ${r.periodo}
-Gerado em : ${new Date().toLocaleDateString("pt-BR")}
-
-${alertStr}${esc}RESULTADO
-Pontuação  : ${r.soma}/25
-Nível      : ${NIVEL_LABEL[r.nivel]}
-Padrão     : ${r.combinacao.codigo}
-Itens altos: ${r.altos.join(", ")||"nenhum"}
-Moderados  : ${r.moderados.join(", ")||"nenhum"}
-Alertas    : ${r.alertas.join("; ")||"nenhum"}
-
-LEITURA INTERNA
-${r.combinacao.leitura}
-
-PRIMEIRO MOVIMENTO
-→ ${r.combinacao.acao}
-
-BLOCOS DE CUIDADO
-${r.blocos.join(" · ")||"Manutenção ativa"}${mods}${ests}
-
-PRAZO DE REAVALIAÇÃO: ${r.prazo}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-[Equipe: personalizar com contexto antes de enviar]`;
-}
-
-const EXEMPLO=`* _subject
-Novo resultado - F-Medicação
-* alertas
-[]
-* alertas_resumo
-Nenhum alerta selecionado
-* id_formulario
-F_MEDICACAO
-* idade
-6 anos
-* med_01
-1
-* med_02
-1
-* med_03
-2
-* med_04
-1
-* med_05
-1
-* mudanca_recente
-Não
-* nome_crianca
-Exemplo de Criança
-* nome_formulario
-F-Medicação
-* periodo_observado
-Últimos 14 dias
-* responsavel
-Responsável Exemplo
-* usa_medicacao
-Sim
-_status`;
-
-
-let resultadoAtual = null;
-
-function setTab(nome, btn) {
-  ['leitura','pontuacao','estrategias','devolutiva'].forEach(t => {
-    document.getElementById('tab-'+t).style.display = t === nome ? '' : 'none';
-  });
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
+  
+  return data;
 }
 
 function processar() {
   const input = document.getElementById('payload-input').value;
-  const erroEl = document.getElementById('erro-msg');
-  erroEl.className = 'erro-msg';
-  let payload;
-  try { payload = parsePayload(input); } catch(e) { mostrarErro('Erro ao ler payload: '+e.message); return; }
-  if (!payload.id_formulario) { mostrarErro('Formulário não identificado. Verifique se o e-mail contém o campo id_formulario ou um subject com o nome do pilar (ex: F-Medicação, F-Casa...).'); return; }
-  const r = processarLogica(payload);
-  if (!r) { mostrarErro('Pilar não reconhecido: '+payload.id_formulario); return; }
-  resultadoAtual = r;
-  renderResultado(r);
+  hideError();
+  
+  if (!input.trim()) {
+    showError("Por favor, cole um payload válido recebido do Formspree.");
+    return;
+  }
+  
+  const parsedData = parsePayload(input);
+  
+  // 1. Identificar o pilar do formulário
+  let pilarKey = null;
+  
+  if (parsedData['id_formulario']) {
+    pilarKey = parsedData['id_formulario'].trim().toUpperCase();
+  }
+  
+  // Fallback: Verificar assunto do e-mail
+  if (!pilarKey && parsedData['_subject']) {
+    const subj = parsedData['_subject'].toUpperCase();
+    if (subj.includes('CASA') || subj.includes('ROTINA')) pilarKey = 'F_CASA';
+    else if (subj.includes('MEDIC') || subj.includes('MEDICACAO') || subj.includes('MEDICAÇÃO')) pilarKey = 'F_MEDICACAO';
+    else if (subj.includes('ESCOL') || subj.includes('ESCOLA')) pilarKey = 'F_ESCOLA';
+    else if (subj.includes('SOCIA') || subj.includes('SOCIAL') || subj.includes('REGULACAO')) pilarKey = 'F_SOCIAL';
+    else if (subj.includes('AUTON') || subj.includes('AUTONOMIA') || subj.includes('EXECU')) pilarKey = 'F_AUTONOMIA';
+  }
+  
+  // Segundo Fallback: Identificar presença de campos correspondentes
+  if (!pilarKey) {
+    if (Object.keys(parsedData).some(k => k.startsWith('cas_'))) pilarKey = 'F_CASA';
+    else if (Object.keys(parsedData).some(k => k.startsWith('med_'))) pilarKey = 'F_MEDICACAO';
+    else if (Object.keys(parsedData).some(k => k.startsWith('esc_'))) pilarKey = 'F_ESCOLA';
+    else if (Object.keys(parsedData).some(k => k.startsWith('soc_'))) pilarKey = 'F_SOCIAL';
+    else if (Object.keys(parsedData).some(k => k.startsWith('aut_'))) pilarKey = 'F_AUTONOMIA';
+  }
+  
+  if (!pilarKey || !PILARES[pilarKey]) {
+    showError("Não foi possível identificar o Pilar correspondente a este formulário. Verifique o identificador do formulário no payload.");
+    return;
+  }
+  
+  const pilar = PILARES[pilarKey];
+  let totalScore = 0;
+  let camposPreenchidosCount = 0;
+  const itemScores = {};
+  const activeItensList = [];
+  
+  pilar.campos.forEach((campo, index) => {
+    const valText = parsedData[campo.toLowerCase()];
+    if (valText !== undefined) {
+      let val = parseInt(valText, 10);
+      if (!isNaN(val)) {
+        itemScores[pilar.itens[index]] = val;
+        totalScore += val;
+        camposPreenchidosCount++;
+        // Classifica item como ativo (alta pressão) se score >= 4
+        if (val >= 4) {
+          activeItensList.push(pilar.itens[index]);
+        }
+      }
+    }
+  });
+  
+  if (camposPreenchidosCount === 0) {
+    showError(`Erro: Nenhum campo de resposta válido para o pilar '${pilar.nome}' foi encontrado no texto colado.`);
+    return;
+  }
+  
+  // Ordenar itens ativos alfabeticamente/numericamente para mapear na combinação
+  activeItensList.sort();
+  const combinacaoChave = activeItensList.join(',');
+  
+  let playbookCombinacao = pilar.combinacoes[combinacaoChave];
+  
+  // Caso a combinação específica não esteja cadastrada, fall back para o cenário padrão ou preventivo
+  if (!playbookCombinacao) {
+    if (combinacaoChave === "") {
+      playbookCombinacao = pilar.combinacoes[""];
+    } else {
+      // Cria uma leitura dinâmica se for uma combinação não explícita
+      playbookCombinacao = {
+        codigo: pilar.codigo + "X",
+        leitura: "Pressão combinada nos itens: " + activeItensList.join(', ') + ".",
+        acao: "Iniciar intervenção focada no item de maior pontuação: " + activeItensList[0] + "."
+      };
+    }
+  }
+  
+  // 2. Determinar Nível de Suporte (Baseado no escore total)
+  let level = 1;
+  let levelNome = "Suporte Preventivo";
+  let levelClass = "nivel-1";
+  
+  if (totalScore <= 7) {
+    level = 1;
+    levelNome = "Suporte Preventivo / Leve";
+    levelClass = "nivel-1";
+  } else if (totalScore <= 14) {
+    level = 2;
+    levelNome = "Suporte Moderado";
+    levelClass = "nivel-2";
+  } else if (totalScore <= 20) {
+    level = 3;
+    levelNome = "Suporte Prioritário";
+    levelClass = "nivel-3";
+  } else {
+    level = 4;
+    levelNome = "Suporte Intensivo";
+    levelClass = "nivel-4";
+  }
+  
+  // 3. Determinar Prazo de Reavaliação
+  let prazo = "30 dias";
+  if (level === 4) prazo = "7 dias";
+  else if (level === 3) prazo = "14 dias";
+  else if (level === 2) prazo = "21 dias";
+  
+  // Salvar no estado global
+  currentResultData = {
+    pilar: pilar,
+    pilarKey: pilarKey,
+    totalScore: totalScore,
+    levelNome: levelNome,
+    levelClass: levelClass,
+    prazo: prazo,
+    combinacao: playbookCombinacao,
+    itemScores: itemScores,
+    activeItens: activeItensList,
+    parsedPayload: parsedData
+  };
+  
+  // 4. Atualizar a Interface (DOM)
+  document.getElementById('res-score').textContent = totalScore;
+  
+  // Alternar visualização (Esconder Empty State, Mostrar Resultados)
+  document.getElementById('empty-state').style.display = 'none';
+  document.getElementById('result-body').classList.remove('hidden');
+  document.getElementById('result-actions').style.display = 'flex';
+  
+  // Pilar Pill
+  document.getElementById('res-pilar-nome').textContent = pilar.nome;
+  document.getElementById('res-pilar-dot').style.backgroundColor = pilar.cor;
+  document.getElementById('res-pilar-pill').style.borderColor = pilar.cor + '44';
+  document.getElementById('res-pilar-pill').style.backgroundColor = pilar.cor + '15';
+  document.getElementById('res-pilar-pill').style.color = pilar.cor;
+  
+  // Nível de Suporte
+  const nivelTag = document.getElementById('res-nivel');
+  nivelTag.className = "level-tag " + levelClass;
+  nivelTag.textContent = `NÍVEL ${level} — ${levelNome.toUpperCase()}`;
+  
+  // Dados de Leitura do Playbook
+  document.getElementById('res-padrao').textContent = playbookCombinacao.codigo + " · " + (combinacaoChave || "Nenhum ponto dominante");
+  document.getElementById('res-leitura').textContent = playbookCombinacao.leitura;
+  document.getElementById('res-acao').textContent = playbookCombinacao.acao;
+  document.getElementById('res-prazo').textContent = prazo;
+  
+  // Renderizar Banners de Alerta/Escalada
+  const alertBanner = document.getElementById('alert-banner');
+  const escBanner = document.getElementById('esc-banner');
+  alertBanner.className = 'alert-banner';
+  escBanner.className = 'esc-banner';
+  
+  // Tratar Banners
+  let hasAlert = false;
+  let hasEsc = false;
+  
+  if (pilarKey === 'F_MEDICACAO') {
+    if (itemScores['M3'] >= 4) {
+      alertBanner.textContent = "⚠️ Alerta: Presença de efeitos colaterais ativos (irritabilidade, sonolência, insônia ou apetite reduzido). Mapear Diário de Efeitos Adversos com prioridade.";
+      hasAlert = true;
+    }
+    if (itemScores['M1'] >= 4 && itemScores['M2'] >= 4) {
+      escBanner.textContent = "⚡ Atenção: Oscilação horária crítica associada a dúvidas sobre a eficácia clínica percebida. Preencher o Mapa de Efeito Diário.";
+      hasEsc = true;
+    }
+  } else if (pilarKey === 'F_CASA') {
+    if (itemScores['C4'] >= 4) {
+      escBanner.textContent = "🔥 Escalada Familiar: Reações frequentes de oposição, irritação intensa ou explosões emocionais. Aplicar o Protocolo de Pausa e Limite Calmo.";
+      hasEsc = true;
+    }
+  } else if (pilarKey === 'F_SOCIAL') {
+    if (itemScores['S5'] >= 4) {
+      alertBanner.textContent = "⚠️ Risco Social: Criança apresenta sinais severos de exclusão, rejeição ou sofrimento social. Focar no Plano de Pertencimento imediato.";
+      hasAlert = true;
+    }
+    if (itemScores['S2'] >= 4 && itemScores['S3'] >= 4) {
+      escBanner.textContent = "⚡ Desregulação Ativa: Impulsividade combinada com baixa tolerância à frustração gerando conflitos recorrentes.";
+      hasEsc = true;
+    }
+  } else if (pilarKey === 'F_ESCOLA') {
+    if (itemScores['E4'] >= 4) {
+      escBanner.textContent = "⚡ Desalinhamento Pedagógico: Queixas recorrentes da escola sem proposição ou clareza de adaptações práticas. Exige acionar a Ponte Família-Escola.";
+      hasEsc = true;
+    }
+  }
+  
+  if (hasAlert) alertBanner.classList.add('show');
+  if (hasEsc) escBanner.classList.add('show');
+  
+  // Renderizar Blocos de Cuidado
+  const resBlocos = document.getElementById('res-blocos');
+  resBlocos.innerHTML = "";
+  if (activeItensList.length === 0) {
+    resBlocos.innerHTML = `<span style="font-size: 0.8rem; color: var(--text-muted)">Nenhum bloco de cuidado ativo (escore abaixo de 4).</span>`;
+  } else {
+    activeItensList.forEach(it => {
+      const blocoNome = pilar.blocos[it];
+      if (blocoNome) {
+        const span = document.createElement('span');
+        span.className = "chip chip-bloco";
+        span.textContent = `${it}: ${blocoNome}`;
+        resBlocos.appendChild(span);
+      }
+    });
+  }
+  
+  // Renderizar Moduladores Ativos
+  const resMods = document.getElementById('res-mods');
+  const resModsBlock = document.getElementById('res-mods-block');
+  resMods.innerHTML = "";
+  
+  if (activeItensList.length === 0) {
+    resModsBlock.style.display = 'none';
+  } else {
+    resModsBlock.style.display = 'grid';
+    activeItensList.forEach(it => {
+      const modTexto = pilar.moduladores[it];
+      if (modTexto) {
+        const div = document.createElement('div');
+        div.className = "mod-item";
+        div.innerHTML = `<span class="mod-item-bullet">›</span> <div><strong>${it}:</strong> ${modTexto}</div>`;
+        resMods.appendChild(div);
+      }
+    });
+  }
+  
+  // Renderizar Aba Pontuação
+  const resPontuacoes = document.getElementById('res-pontuacoes');
+  resPontuacoes.innerHTML = `<h3 class="result-block-label" style="margin-bottom: 8px">Nota de Pressão por Item</h3>`;
+  const scoreListDiv = document.createElement('div');
+  scoreListDiv.className = "score-list";
+  
+  pilar.campos.forEach((campo, idx) => {
+    const itName = pilar.itens[idx];
+    const itDesc = pilar.descricoes[idx];
+    const scoreVal = itemScores[itName] || 0;
+    
+    let colorClass = "score-low";
+    if (scoreVal >= 4) colorClass = "score-high";
+    else if (scoreVal >= 3) colorClass = "score-mod";
+    
+    const pct = (scoreVal / 5) * 100;
+    
+    scoreListDiv.innerHTML += `
+      <div class="score-item">
+        <div class="score-item-header">
+          <span class="score-item-label">${itName}</span>
+          <span class="score-item-value ${colorClass}">${scoreVal} / 5</span>
+        </div>
+        <div class="score-item-desc">${itDesc}</div>
+        <div class="score-bar-bg">
+          <div class="score-bar-fg ${colorClass}" style="width: ${pct}%"></div>
+        </div>
+      </div>
+    `;
+  });
+  resPontuacoes.appendChild(scoreListDiv);
+  
+  // Renderizar Aba Estratégias
+  const resEstrategias = document.getElementById('res-estrategias');
+  resEstrategias.innerHTML = "";
+  
+  const allEstrategias = new Set();
+  
+  if (activeItensList.length === 0) {
+    // Caso preventivo, sugere estratégias gerais
+    pilar.itens.forEach(it => {
+      if (pilar.estrategias[it]) {
+        pilar.estrategias[it].slice(0, 2).forEach(est => allEstrategias.add(est));
+      }
+    });
+  } else {
+    activeItensList.forEach(it => {
+      if (pilar.estrategias[it]) {
+        pilar.estrategias[it].forEach(est => allEstrategias.add(est));
+      }
+    });
+  }
+  
+  allEstrategias.forEach(est => {
+    const span = document.createElement('span');
+    span.className = "chip chip-strat";
+    span.textContent = est;
+    resEstrategias.appendChild(span);
+  });
+  
+  // Renderizar Devolutiva Estruturada
+  gerarDevolutivaTexto();
+  
+  // Forçar retorno à aba de Leitura
+  const tabLeituraBtn = document.querySelector(".tab-row button");
+  if (tabLeituraBtn) {
+    setTab('leitura', tabLeituraBtn);
+  }
 }
 
-function mostrarErro(msg) {
-  const el = document.getElementById('erro-msg');
-  el.textContent = '⚠ '+msg;
-  el.className = 'erro-msg show';
+// ─── DEVOLUTIVA ESTRUTURADA GENERATOR ──────────────────────────────────────────
+function gerarDevolutivaTexto() {
+  if (!currentResultData) return;
+  const d = currentResultData;
+  
+  let blocosAtivosStr = "";
+  d.activeItens.forEach(it => {
+    const bNome = d.pilar.blocos[it];
+    if (bNome) blocosAtivosStr += `- [${it}] ${bNome}\n`;
+  });
+  if (!blocosAtivosStr) blocosAtivosStr = "- Nenhum item com alta pressão (>3).\n";
+  
+  let estStr = "";
+  const allEst = new Set();
+  d.activeItens.forEach(it => {
+    if (d.pilar.estrategias[it]) {
+      d.pilar.estrategias[it].forEach(e => allEst.add(e));
+    }
+  });
+  
+  // Se estiver sem itens de alta pressão, sugere do primeiro item
+  if (allEst.size === 0) {
+    d.pilar.estrategias[d.pilar.itens[0]].slice(0, 3).forEach(e => allEst.add(e));
+  }
+  
+  Array.from(allEst).slice(0, 4).forEach(e => {
+    estStr += `- ${e}\n`;
+  });
+  
+  const texto = `★ DEVOLUTIVA ESTRUTURADA — META360TDAH ★
+--------------------------------------------------
+PILAR: ${d.pilar.nome.toUpperCase()} (${d.pilarKey})
+NÍVEL DE SUPORTE: Nível ${d.totalScore <= 7 ? '1' : d.totalScore <= 14 ? '2' : d.totalScore <= 20 ? '3' : '4'} — ${d.levelNome}
+PONTUAÇÃO TOTAL: ${d.totalScore} / 25
+PRAZO DE REAVALIAÇÃO: ${d.prazo}
+--------------------------------------------------
+
+Prezada equipe técnica,
+
+Com base na análise do payload do Formspree do pilar ${d.pilar.nome}, mapeamos o seguinte diagnóstico e plano de ação:
+
+1. PADRÃO DOMINANTE E LEITURA CLÍNICO-PEDAGÓGICA:
+Código Playbook: ${d.combinacao.codigo} (Chave: ${d.activeItens.join(',') || 'PREVENTIVO'})
+Leitura: ${d.combinacao.leitura}
+
+2. PRIMEIRO MOVIMENTO RECOMENDADO:
+Ação imediata: ${d.combinacao.acao}
+
+3. BLOCOS DE CUIDADO ATIVOS:
+${blocosAtivosStr}
+4. ESTRATÉGIAS PRÁTICAS SUGERIDAS (Focar em apenas uma de cada vez):
+${estStr}
+5. DIRETRIZ DE ACOMPANHAMENTO:
+Frequência recomendada: Reavaliar a eficácia desta intervenção em ${d.prazo}.
+
+--------------------------------------------------
+[REVISÃO OBRIGATÓRIA DA EQUIPE ANTES DO COMPARTILHAMENTO]`;
+
+  document.getElementById('res-devolutiva').textContent = texto;
 }
 
-const NIVEL_CLASS = ['','nivel-1','nivel-2','nivel-3','nivel-4'];
-
-function renderResultado(r) {
-  document.getElementById('res-score').textContent = r.soma;
-  const pill = document.getElementById('res-pilar-pill');
-  const dot  = document.getElementById('res-pilar-dot');
-  document.getElementById('res-pilar-nome').textContent = r.pilar.nome;
-  dot.style.background = r.pilar.cor;
-  pill.style.background = r.pilar.cor+'18';
-  pill.style.borderColor = r.pilar.cor+'40';
-  pill.style.color = r.pilar.cor;
-  const ab = document.getElementById('alert-banner');
-  const eb = document.getElementById('esc-banner');
-  if (r.alertas.length) { ab.textContent='⚠ Alerta ativo: '+r.alertas.join(' · ')+' — encurtar prazo e considerar contato clínico.'; ab.className='alert-banner show'; } else { ab.className='alert-banner'; }
-  if (r.escalonamentoClinico) { eb.textContent='🔴 Escalonamento clínico obrigatório. Pilar Medicamentoso nível '+r.nivel+' ou alerta ativo. Não enviar sem revisão do Dr. Fabio Pessoa.'; eb.className='esc-banner show'; } else { eb.className='esc-banner'; }
-  const nEl = document.getElementById('res-nivel');
-  nEl.textContent = NIVEL_LABEL[r.nivel];
-  nEl.className = 'level-tag '+NIVEL_CLASS[r.nivel];
-  document.getElementById('res-padrao').textContent  = r.combinacao.codigo;
-  document.getElementById('res-leitura').textContent = r.combinacao.leitura;
-  document.getElementById('res-acao').textContent    = r.combinacao.acao;
-  const bEl = document.getElementById('res-blocos');
-  bEl.innerHTML = r.blocos.length ? r.blocos.map(b=>`<span class="chip chip-bloco">${b}</span>`).join('') : '<span style="font-size:.82rem;color:var(--text-muted)">Manutenção ativa</span>';
-  const mEl = document.getElementById('res-mods');
-  const mBl = document.getElementById('res-mods-block');
-  if (r.modsAtivos.length) { mEl.innerHTML = r.modsAtivos.map(m=>`<div style="padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.82rem;color:var(--slate-100)">· ${m}</div>`).join(''); mBl.style.display=''; } else { mBl.style.display='none'; }
-  document.getElementById('res-prazo').textContent = r.prazo;
-  document.getElementById('res-pontuacoes').innerHTML = r.pontuacoes.map(p=>`<div style="display:flex;gap:10px;align-items:flex-start;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.05)"><div style="min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;flex-shrink:0;background:${p.nota>=4?'rgba(239,68,68,.12)':p.nota===3?'rgba(251,191,36,.1)':'rgba(255,255,255,.04)'};color:${p.nota>=4?'#fca5a5':p.nota===3?'#fcd34d':'var(--text-muted)'};">${p.nota}</div><div><div style="font-size:.84rem;font-weight:500;color:var(--slate-100)">${p.item} — ${p.desc}</div><div style="font-size:.75rem;margin-top:2px;color:${p.nota>=4?'#fca5a5':p.nota===3?'#fcd34d':'var(--text-muted)'}">${p.nota>=4?'Pressão alta — define padrão dominante':p.nota===3?(r.pilar.moduladores[p.item]||'Moderado'):'Pressão baixa'}</div></div></div>`).join('');
-  const eEl = document.getElementById('res-estrategias');
-  eEl.innerHTML = r.estrategias.length ? r.estrategias.map(e=>`<span class="chip chip-strat">${e}</span>`).join('') : '<span style="font-size:.82rem;color:var(--text-muted)">Manutenção ativa.</span>';
-  document.getElementById('res-devolutiva').textContent = gerarDevolutiva(r);
-  document.getElementById('empty-state').className   = 'result-body hidden';
-  document.getElementById('result-body').className    = 'result-body';
-  document.getElementById('result-actions').style.display = '';
-  setTab('leitura', document.querySelector('.tab'));
+// ─── AUXILIARES DE UI ──────────────────────────────────────────────────────────
+function showError(msg) {
+  const errDiv = document.getElementById('erro-msg');
+  errDiv.textContent = msg;
+  errDiv.classList.add('show');
+  errDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function carregarExemplo() {
-  document.getElementById('payload-input').value = EXEMPLO;
-  document.getElementById('erro-msg').className = 'erro-msg';
-  document.getElementById('empty-state').className   = 'result-body';
-  document.getElementById('result-body').className    = 'result-body hidden';
-  document.getElementById('result-actions').style.display = 'none';
-  document.getElementById('res-score').textContent = '—';
-}
-
-function limpar() {
-  document.getElementById('payload-input').value = '';
-  document.getElementById('erro-msg').className = 'erro-msg';
-  document.getElementById('empty-state').className   = 'result-body';
-  document.getElementById('result-body').className    = 'result-body hidden';
-  document.getElementById('result-actions').style.display = 'none';
-  document.getElementById('res-score').textContent = '—';
-  resultadoAtual = null;
+function hideError() {
+  document.getElementById('erro-msg').classList.remove('show');
 }
 
 function copiarDevolutiva() {
-  if (!resultadoAtual) return;
-  navigator.clipboard.writeText(gerarDevolutiva(resultadoAtual)).then(() => {
-    const btn = document.getElementById('btn-copiar');
-    const orig = btn.innerHTML;
-    btn.textContent = '✓ Copiado';
-    btn.style.color = '#4ade80';
-    setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 2000);
+  const devBox = document.getElementById('res-devolutiva');
+  if (!devBox || !devBox.textContent) return;
+  
+  navigator.clipboard.writeText(devBox.textContent).then(() => {
+    const btnCopiar = document.getElementById('btn-copiar');
+    const originalText = btnCopiar.innerHTML;
+    btnCopiar.innerHTML = `
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none"><path d="M2 8l4.5 4.5L14 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Copiado!
+    `;
+    btnCopiar.style.borderColor = "#17855b";
+    btnCopiar.style.color = "#5feabd";
+    
+    setTimeout(() => {
+      btnCopiar.innerHTML = originalText;
+      btnCopiar.style.borderColor = "";
+      btnCopiar.style.color = "";
+    }, 1800);
+  }).catch(err => {
+    alert("Falha ao copiar devolutiva. Copie manualmente a partir da caixa.");
   });
+}
+
+function limpar() {
+  document.getElementById('payload-input').value = "";
+  document.getElementById('empty-state').style.display = 'block';
+  document.getElementById('result-body').classList.add('hidden');
+  document.getElementById('result-actions').style.display = 'none';
+  hideError();
+  currentResultData = null;
+}
+
+// ─── GERADOR DE PAYLOAD DE EXEMPLO ─────────────────────────────────────────────
+const EXEMPLOS = [
+  // Exemplo Casa (Suporte Prioritário/Intensivo)
+  `* _subject\nNovo resultado - F-Casa\n* id_formulario\nF_CASA\n* cas_01\n4\n* cas_02\n5\n* cas_03\n2\n* cas_04\n4\n* cas_05\n1\n* _status\nsuccess`,
+  
+  // Exemplo Medicação (Suporte Prioritário com Alerta)
+  `* _subject\nNovo resultado - F-Medicação\n* id_formulario\nF_MEDICACAO\n* med_01\n3\n* med_02\n5\n* med_03\n4\n* med_04\n2\n* med_05\n3\n* _status\nsuccess`,
+  
+  // Exemplo Real com Quebras de Linha e Sem Prefixo (Formato Bare-Key do Usuário)
+  `May 28, 2026, 03:50\n_subject\n\nNovo resultado - F-Medicação\nalertas\n\n  - "Sonolência intensa"\n\nalertas_resumo\n\nSonolência intensa\nid_formulario\n\nF_MEDICACAO\nidade\n\n11\nmed_01\n\n3\n\nmed_02\n\n2\n\nmed_03\n\n2\n\nmed_04\n\n3\n\nmed_05\n\n3\n\nmudanca_recente\n\nSim\nnome_crianca\n\nldjfsdlçf\nnome_formulario\n\nF-Medicação\nperiodo_observado\n\nÚltimos 7 dias\nresponsavel\n\nffff\nusa_medicacao\n\nSim\n_status\n\npessoafabio@outlook.com:\nopen`,
+  
+  // Exemplo Escola (Suporte Moderado)
+  `* _subject\nNovo resultado - F-Escola\n* id_formulario\nF_ESCOLA\n* esc_01\n3\n* esc_02\n4\n* esc_03\n2\n* esc_04\n3\n* esc_05\n1\n* _status\nsuccess`,
+  
+  // Exemplo Autonomia (Suporte Intensivo)
+  `* _subject\nNovo resultado - F-Autonomia\n* id_formulario\nF_AUTONOMIA\n* aut_01\n5\n* aut_02\n4\n* aut_03\n4\n* aut_04\n3\n* aut_05\n4\n* _status\nsuccess`
+];
+
+let exemploIndex = 0;
+function carregarExemplo() {
+  const payload = EXEMPLOS[exemploIndex];
+  document.getElementById('payload-input').value = payload;
+  exemploIndex = (exemploIndex + 1) % EXEMPLOS.length;
+  hideError();
 }
   </script>
 </body>
