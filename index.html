@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Motor de Leitura — META360TDAH</title>
+  <title>Motor de Leitura â META360TDAH</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -115,9 +115,9 @@
     </nav>
 
     <header class="hero">
-      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Playbook · 5 Pilares</div>
+      <div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Playbook Â· 5 Pilares</div>
       <h1>Motor de Leitura<br><span class="accent">Devolutiva Estruturada</span></h1>
-      <p class="hero-sub">Cole o payload recebido por e-mail do Formspree. O motor identifica o pilar, aplica as combinações do playbook e gera o rascunho de devolutiva para a equipe.</p>
+      <p class="hero-sub">Cole o payload recebido por e-mail do Formspree. O motor identifica o pilar, aplica as combinaÃ§Ãµes do playbook e gera o rascunho de devolutiva para a equipe.</p>
     </header>
 
     <main>
@@ -130,10 +130,10 @@
             <span class="card-title">Payload Formspree</span>
           </div>
           <div class="card-body">
-            <p class="hint">Cole o conteúdo do e-mail recebido do Formspree — exatamente como chega, incluindo a linha <code>_status</code> no final. O motor trata automaticamente.</p>
+            <p class="hint">Cole o conteÃºdo do e-mail recebido do Formspree â exatamente como chega, incluindo a linha <code>_status</code> no final. O motor trata automaticamente.</p>
             <div class="field">
-              <label>Conteúdo do e-mail</label>
-              <textarea id="payload-input" placeholder="* _subject&#10;Novo resultado - F-Medicação&#10;* id_formulario&#10;F_MEDICACAO&#10;* med_01&#10;1&#10;..."></textarea>
+              <label>ConteÃºdo do e-mail</label>
+              <textarea id="payload-input" placeholder="* _subject&#10;Novo resultado - F-MedicaÃ§Ã£o&#10;* id_formulario&#10;F_MEDICACAO&#10;* med_01&#10;1&#10;..."></textarea>
             </div>
             <div class="btn-row">
               <button class="btn primary" onclick="processar()">
@@ -156,12 +156,12 @@
 
       <aside class="result-panel" aria-live="polite">
         <div class="result-header">
-          <div class="result-label">Resultado automático</div>
-          <div class="result-score-row"><strong id="res-score">—</strong><span>/ 25</span></div>
+          <div class="result-label">Resultado automÃ¡tico</div>
+          <div class="result-score-row"><strong id="res-score">â</strong><span>/ 25</span></div>
         </div>
         <div class="result-body" id="empty-state">
           <div class="empty-state">
-            <div class="empty-state-icon">⚙</div>
+            <div class="empty-state-icon">â</div>
             <div class="empty-state-title">Aguardando payload</div>
             <div class="empty-state-sub">Cole o e-mail do Formspree<br>e clique em Processar</div>
           </div>
@@ -172,23 +172,23 @@
           <div class="esc-banner"   id="esc-banner"></div>
           <div class="tab-row">
             <button class="tab active" onclick="setTab('leitura',this)">Leitura</button>
-            <button class="tab" onclick="setTab('pontuacao',this)">Pontuação</button>
-            <button class="tab" onclick="setTab('estrategias',this)">Estratégias</button>
+            <button class="tab" onclick="setTab('pontuacao',this)">PontuaÃ§Ã£o</button>
+            <button class="tab" onclick="setTab('estrategias',this)">EstratÃ©gias</button>
             <button class="tab" onclick="setTab('devolutiva',this)">Devolutiva</button>
           </div>
           <div id="tab-leitura">
             <div class="level-tag" id="res-nivel"></div>
-            <div class="result-block" style="margin-top:12px"><span class="result-block-label">Padrão dominante</span><div class="result-block-value" id="res-padrao"></div></div>
+            <div class="result-block" style="margin-top:12px"><span class="result-block-label">PadrÃ£o dominante</span><div class="result-block-value" id="res-padrao"></div></div>
             <div class="result-block"><span class="result-block-label">Leitura interna</span><div class="result-block-value" id="res-leitura"></div></div>
             <div class="result-block"><span class="result-block-label">Primeiro movimento</span><div class="result-block-value" id="res-acao" style="background:linear-gradient(135deg,rgba(244,98,42,.12),rgba(249,160,63,.08));border:1px solid rgba(244,98,42,.2);border-radius:8px;padding:10px 12px"></div></div>
             <div class="result-block"><span class="result-block-label">Blocos de cuidado</span><div class="chip-row" id="res-blocos"></div></div>
             <div class="result-block" id="res-mods-block"><span class="result-block-label">Moduladores ativos</span><div id="res-mods"></div></div>
-            <div class="result-block"><span class="result-block-label">Prazo de reavaliação</span><div class="result-block-value" id="res-prazo"></div></div>
+            <div class="result-block"><span class="result-block-label">Prazo de reavaliaÃ§Ã£o</span><div class="result-block-value" id="res-prazo"></div></div>
           </div>
           <div id="tab-pontuacao" style="display:none"><div id="res-pontuacoes"></div></div>
           <div id="tab-estrategias" style="display:none">
-            <div class="result-block"><span class="result-block-label">Estratégias do Glossário</span><div class="chip-row" id="res-estrategias" style="margin-top:8px"></div></div>
-            <p style="font-size:.76rem;color:var(--text-muted);margin-top:12px;line-height:1.6">A equipe escolhe <strong style="color:var(--slate-100)">uma</strong> como primeiro movimento — não todas ao mesmo tempo.</p>
+            <div class="result-block"><span class="result-block-label">EstratÃ©gias do GlossÃ¡rio</span><div class="chip-row" id="res-estrategias" style="margin-top:8px"></div></div>
+            <p style="font-size:.76rem;color:var(--text-muted);margin-top:12px;line-height:1.6">A equipe escolhe <strong style="color:var(--slate-100)">uma</strong> como primeiro movimento â nÃ£o todas ao mesmo tempo.</p>
           </div>
           <div id="tab-devolutiva" style="display:none">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
@@ -198,7 +198,7 @@
                 Copiar
               </button>
             </div>
-            <p style="font-size:.75rem;color:var(--text-muted);margin-bottom:8px;line-height:1.5">Revisar antes de enviar. Personalizar com contexto da família.</p>
+            <p style="font-size:.75rem;color:var(--text-muted);margin-bottom:8px;line-height:1.5">Revisar antes de enviar. Personalizar com contexto da famÃ­lia.</p>
             <div class="devolutiva-box" id="res-devolutiva"></div>
           </div>
         </div>
@@ -217,262 +217,271 @@
   </div>
 
   <script>
-// ─── BASE DE CONHECIMENTO ────────────────────────────────────────────────────
+// âââ BASE DE CONHECIMENTO ââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const PILARES = {
   F_CASA:{nome:"Casa, Rotina e Comportamento Familiar",codigo:"C",cor:"#F26A35",
     campos:["cas_01","cas_02","cas_03","cas_04","cas_05"],
     itens:["C1","C2","C3","C4","C5"],
-    descricoes:["Rotina depende de muita insistência dos adultos","Tarefas simples geram conflito","Pais precisam repetir comandos muitas vezes","Criança reage com oposição, irritação ou explosão","Casa só funciona se um adulto controla tudo"],
-    blocos:{C1:"Rotina em 3 Passos",C2:"Tarefa sem Guerra",C3:"Comunicação que Funciona",C4:"Protocolo de Escalada",C5:"Escada de Autonomia Doméstica"},
+    descricoes:["Rotina depende de muita insistÃªncia dos adultos","Tarefas simples geram conflito","Pais precisam repetir comandos muitas vezes","CrianÃ§a reage com oposiÃ§Ã£o, irritaÃ§Ã£o ou explosÃ£o","Casa sÃ³ funciona se um adulto controla tudo"],
+    blocos:{C1:"Rotina em 3 Passos",C2:"Tarefa sem Guerra",C3:"ComunicaÃ§Ã£o que Funciona",C4:"Protocolo de Escalada",C5:"Escada de Autonomia DomÃ©stica"},
     combinacoes:{
-      "":{codigo:"PC00",leitura:"Não há ponto único de alta pressão. Se houver vários itens em 3, há pressão difusa.",acao:"Escolher o item de maior impacto para a família e intervir com rotina mínima por 14 a 30 dias."},
-      "C1":{codigo:"PC01",leitura:"Rotina dependente de muita insistência. O adulto está usando energia verbal para sustentar o dia.",acao:"Criar rotina visual de 3 passos para um único momento crítico."},
-      "C2":{codigo:"PC02",leitura:"Tarefas simples viraram gatilho de conflito. A entrada na tarefa está mal desenhada.",acao:"Reduzir a tarefa ao primeiro passo concreto e reforçar o início."},
-      "C3":{codigo:"PC03",leitura:"A comunicação virou repetição. A criança responde tarde e o adulto se desgasta.",acao:"Usar comando curto, pausa de 5 segundos e pista visual."},
-      "C4":{codigo:"PC04",leitura:"O eixo dominante é oposição, irritação ou explosão diante de limite.",acao:"Criar protocolo de escalada: falar menos, manter limite, retomar depois."},
-      "C5":{codigo:"PC05",leitura:"A casa depende de controle adulto permanente. Há dependência executiva.",acao:"Escolher uma microresponsabilidade para transferência gradual."},
-      "C1,C2":{codigo:"PC06",leitura:"Rotina instável e tarefas conflituosas. A criança entra na demanda sem previsibilidade suficiente.",acao:"Criar sequência fixa antes da tarefa crítica e avisar a transição."},
-      "C1,C3":{codigo:"PC07",leitura:"Insistência adulta e repetição de comandos. O sistema depende de fala excessiva.",acao:"Externalizar a rotina em checklist visual e reduzir comandos verbais."},
-      "C1,C4":{codigo:"PC08",leitura:"Rotina instável alimenta explosões. A falta de antecipação aumenta desregulação.",acao:"Usar antecipação e contagem regressiva antes das transições."},
-      "C1,C5":{codigo:"PC09",leitura:"A rotina existe, mas está nas mãos do adulto.",acao:"Transformar rotina verbal em visual e transferir pequenas etapas."},
-      "C2,C3":{codigo:"PC10",leitura:"Tarefas viram conflito e os comandos se repetem. Há fala demais antes da ação.",acao:"Falar menos, iniciar junto por 2 minutos e retirar ajuda gradualmente."},
-      "C2,C4":{codigo:"PC11",leitura:"A tarefa é gatilho de explosão. A exigência inicial pode estar alta ou mal fracionada.",acao:"Pedir apenas o começo da tarefa e reforçar a tentativa."},
-      "C2,C5":{codigo:"PC12",leitura:"Adultos assumem tarefas para evitar briga.",acao:"Adulto faz junto, não faz pela criança; definir tarefa que deixará de ser 100% adulta."},
-      "C3,C4":{codigo:"PC13",leitura:"A repetição de comandos escala oposição.",acao:"Dar comando uma vez, oferecer escolha fechada e encerrar negociação."},
-      "C3,C5":{codigo:"PC14",leitura:"A criança só age sob comando externo.",acao:"Trocar lembretes por checklist, alarme ou quadro visual."},
-      "C4,C5":{codigo:"PC15",leitura:"A família controla tudo para evitar explosão.",acao:"Manter uma exigência mínima com limite calmo e ajustar depois da crise."},
-      "C1,C2,C3":{codigo:"PC16",leitura:"Ciclo comando-resistência-repetição.",acao:"Implantar Rotina em 3 Passos por 14 dias."},
-      "C1,C2,C4":{codigo:"PC17",leitura:"Demanda sem preparo vira crise.",acao:"Preparar ambiente, antecipar transição e reduzir exigência inicial."},
-      "C1,C2,C5":{codigo:"PC18",leitura:"Adultos sustentam rotina e tarefas viram disputa quando há transferência.",acao:"Definir o que a criança faz sozinha, junto e o que o adulto confere."},
-      "C1,C3,C4":{codigo:"PC19",leitura:"Comando verbal repetido é combustível da crise.",acao:"Reduzir fala, usar regra visual e pausa."},
+      "":{codigo:"PC00",leitura:"NÃ£o hÃ¡ ponto Ãºnico de alta pressÃ£o. Se houver vÃ¡rios itens em 3, hÃ¡ pressÃ£o difusa.",acao:"Escolher o item de maior impacto para a famÃ­lia e intervir com rotina mÃ­nima por 14 a 30 dias."},
+      "C1":{codigo:"PC01",leitura:"Rotina dependente de muita insistÃªncia. O adulto estÃ¡ usando energia verbal para sustentar o dia.",acao:"Criar rotina visual de 3 passos para um Ãºnico momento crÃ­tico."},
+      "C2":{codigo:"PC02",leitura:"Tarefas simples viraram gatilho de conflito. A entrada na tarefa estÃ¡ mal desenhada.",acao:"Reduzir a tarefa ao primeiro passo concreto e reforÃ§ar o inÃ­cio."},
+      "C3":{codigo:"PC03",leitura:"A comunicaÃ§Ã£o virou repetiÃ§Ã£o. A crianÃ§a responde tarde e o adulto se desgasta.",acao:"Usar comando curto, pausa de 5 segundos e pista visual."},
+      "C4":{codigo:"PC04",leitura:"O eixo dominante Ã© oposiÃ§Ã£o, irritaÃ§Ã£o ou explosÃ£o diante de limite.",acao:"Criar protocolo de escalada: falar menos, manter limite, retomar depois."},
+      "C5":{codigo:"PC05",leitura:"A casa depende de controle adulto permanente. HÃ¡ dependÃªncia executiva.",acao:"Escolher uma microresponsabilidade para transferÃªncia gradual."},
+      "C1,C2":{codigo:"PC06",leitura:"Rotina instÃ¡vel e tarefas conflituosas. A crianÃ§a entra na demanda sem previsibilidade suficiente.",acao:"Criar sequÃªncia fixa antes da tarefa crÃ­tica e avisar a transiÃ§Ã£o."},
+      "C1,C3":{codigo:"PC07",leitura:"InsistÃªncia adulta e repetiÃ§Ã£o de comandos. O sistema depende de fala excessiva.",acao:"Externalizar a rotina em checklist visual e reduzir comandos verbais."},
+      "C1,C4":{codigo:"PC08",leitura:"Rotina instÃ¡vel alimenta explosÃµes. A falta de antecipaÃ§Ã£o aumenta desregulaÃ§Ã£o.",acao:"Usar antecipaÃ§Ã£o e contagem regressiva antes das transiÃ§Ãµes."},
+      "C1,C5":{codigo:"PC09",leitura:"A rotina existe, mas estÃ¡ nas mÃ£os do adulto.",acao:"Transformar rotina verbal em visual e transferir pequenas etapas."},
+      "C2,C3":{codigo:"PC10",leitura:"Tarefas viram conflito e os comandos se repetem. HÃ¡ fala demais antes da aÃ§Ã£o.",acao:"Falar menos, iniciar junto por 2 minutos e retirar ajuda gradualmente."},
+      "C2,C4":{codigo:"PC11",leitura:"A tarefa Ã© gatilho de explosÃ£o. A exigÃªncia inicial pode estar alta ou mal fracionada.",acao:"Pedir apenas o comeÃ§o da tarefa e reforÃ§ar a tentativa."},
+      "C2,C5":{codigo:"PC12",leitura:"Adultos assumem tarefas para evitar briga.",acao:"Adulto faz junto, nÃ£o faz pela crianÃ§a; definir tarefa que deixarÃ¡ de ser 100% adulta."},
+      "C3,C4":{codigo:"PC13",leitura:"A repetiÃ§Ã£o de comandos escala oposiÃ§Ã£o.",acao:"Dar comando uma vez, oferecer escolha fechada e encerrar negociaÃ§Ã£o."},
+      "C3,C5":{codigo:"PC14",leitura:"A crianÃ§a sÃ³ age sob comando externo.",acao:"Trocar lembretes por checklist, alarme ou quadro visual."},
+      "C4,C5":{codigo:"PC15",leitura:"A famÃ­lia controla tudo para evitar explosÃ£o.",acao:"Manter uma exigÃªncia mÃ­nima com limite calmo e ajustar depois da crise."},
+      "C1,C2,C3":{codigo:"PC16",leitura:"Ciclo comando-resistÃªncia-repetiÃ§Ã£o.",acao:"Implantar Rotina em 3 Passos por 14 dias."},
+      "C1,C2,C4":{codigo:"PC17",leitura:"Demanda sem preparo vira crise.",acao:"Preparar ambiente, antecipar transiÃ§Ã£o e reduzir exigÃªncia inicial."},
+      "C1,C2,C5":{codigo:"PC18",leitura:"Adultos sustentam rotina e tarefas viram disputa quando hÃ¡ transferÃªncia.",acao:"Definir o que a crianÃ§a faz sozinha, junto e o que o adulto confere."},
+      "C1,C3,C4":{codigo:"PC19",leitura:"Comando verbal repetido Ã© combustÃ­vel da crise.",acao:"Reduzir fala, usar regra visual e pausa."},
       "C1,C3,C5":{codigo:"PC20",leitura:"Controle verbal adulto sustenta tudo.",acao:"Criar sistema externo que substitua pelo menos metade dos lembretes."},
-      "C1,C4,C5":{codigo:"PC21",leitura:"Família organiza a casa para evitar crise, não para treinar habilidade.",acao:"Manter previsibilidade e reduzir um ponto de controle adulto por semana."},
-      "C2,C3,C4":{codigo:"PC22",leitura:"Demandas viram negociação, repetição e explosão.",acao:"Selecionar uma regra inegociável da semana, com consequência previsível."},
-      "C2,C3,C5":{codigo:"PC23",leitura:"Pedido, repetição, desgaste e adulto assume.",acao:"Usar ajuda mínima: adulto apoia o primeiro passo; criança executa o próximo."},
-      "C2,C4,C5":{codigo:"PC24",leitura:"A escalada interrompe a demanda.",acao:"Permitir emoção, manter direção e retomar a tarefa após acalmar."},
-      "C3,C4,C5":{codigo:"PC25",leitura:"A criança depende do adulto, mas reage ao controle adulto.",acao:"Diminuir comando direto; usar combinado visual e conferência posterior."},
-      "C1,C2,C3,C4":{codigo:"PC26",leitura:"Alta pressão sem C5 dominante. Crise antes de autonomia.",acao:"Primeiro reduzir crise: rotina única, protocolo de escalada e comandos curtos por 7 dias."},
-      "C1,C2,C3,C5":{codigo:"PC27",leitura:"A casa funciona às custas de sobrecarga parental.",acao:"Reduzir carga adulta e transferir uma microresponsabilidade."},
-      "C1,C2,C4,C5":{codigo:"PC28",leitura:"Conflito, desorganização, explosão e dependência.",acao:"Intervir apenas no momento mais destrutivo do dia por 7 a 14 dias."},
+      "C1,C4,C5":{codigo:"PC21",leitura:"FamÃ­lia organiza a casa para evitar crise, nÃ£o para treinar habilidade.",acao:"Manter previsibilidade e reduzir um ponto de controle adulto por semana."},
+      "C2,C3,C4":{codigo:"PC22",leitura:"Demandas viram negociaÃ§Ã£o, repetiÃ§Ã£o e explosÃ£o.",acao:"Selecionar uma regra inegociÃ¡vel da semana, com consequÃªncia previsÃ­vel."},
+      "C2,C3,C5":{codigo:"PC23",leitura:"Pedido, repetiÃ§Ã£o, desgaste e adulto assume.",acao:"Usar ajuda mÃ­nima: adulto apoia o primeiro passo; crianÃ§a executa o prÃ³ximo."},
+      "C2,C4,C5":{codigo:"PC24",leitura:"A escalada interrompe a demanda.",acao:"Permitir emoÃ§Ã£o, manter direÃ§Ã£o e retomar a tarefa apÃ³s acalmar."},
+      "C3,C4,C5":{codigo:"PC25",leitura:"A crianÃ§a depende do adulto, mas reage ao controle adulto.",acao:"Diminuir comando direto; usar combinado visual e conferÃªncia posterior."},
+      "C1,C2,C3,C4":{codigo:"PC26",leitura:"Alta pressÃ£o sem C5 dominante. Crise antes de autonomia.",acao:"Primeiro reduzir crise: rotina Ãºnica, protocolo de escalada e comandos curtos por 7 dias."},
+      "C1,C2,C3,C5":{codigo:"PC27",leitura:"A casa funciona Ã s custas de sobrecarga parental.",acao:"Reduzir carga adulta e transferir uma microresponsabilidade."},
+      "C1,C2,C4,C5":{codigo:"PC28",leitura:"Conflito, desorganizaÃ§Ã£o, explosÃ£o e dependÃªncia.",acao:"Intervir apenas no momento mais destrutivo do dia por 7 a 14 dias."},
       "C1,C3,C4,C5":{codigo:"PC29",leitura:"Adulto virou gerente, regulador e fiscal.",acao:"Trocar bronca por sinal combinado e quadro visual."},
-      "C2,C3,C4,C5":{codigo:"PC30",leitura:"Demanda, repetição, explosão e adulto assume.",acao:"Tarefa em blocos de 5 minutos, reforçando início e retomada."},
-      "C1,C2,C3,C4,C5":{codigo:"PC31",leitura:"Pilar Casa em suporte intensivo. A família está presa em sistema desgastado.",acao:"Rotina em 3 Passos + Protocolo de Escalada + redução de carga parental. Reavaliar em 7 dias."}
+      "C2,C3,C4,C5":{codigo:"PC30",leitura:"Demanda, repetiÃ§Ã£o, explosÃ£o e adulto assume.",acao:"Tarefa em blocos de 5 minutos, reforÃ§ando inÃ­cio e retomada."},
+      "C1,C2,C3,C4,C5":{codigo:"PC31",leitura:"Pilar Casa em suporte intensivo. A famÃ­lia estÃ¡ presa em sistema desgastado.",acao:"Rotina em 3 Passos + Protocolo de Escalada + reduÃ§Ã£o de carga parental. Reavaliar em 7 dias."}
     },
-    moduladores:{C1:"Adicionar previsibilidade: rotina visual ou antecipação.",C2:"Reduzir entrada em demanda: primeiro passo concreto ou tarefa de 2 minutos.",C3:"Economizar linguagem adulta: comando curto, esperar e evitar repetição.",C4:"Prevenir escalada: protocolo de pausa leve.",C5:"Iniciar microautonomia: uma tarefa para a criança participar mais."},
-    estrategias:{C1:["Rotina em 3 Passos","Checklist visual","Antecipação","Contagem regressiva","Externalização da informação","Tempo externo"],C2:["Tarefa de 2 minutos","Primeiro passo concreto","Scaffolding / andaime","Ajuda mínima necessária","Reforço por início"],C3:["Comando curto","Regra dos 5 segundos","Economia de comandos","Recrutamento de atenção","Redução de linguagem"],C4:["Protocolo de pausa","Limite calmo","Retomada pós-crise","Tolerância à frustração","Consequência imediata","Consequência previsível"],C5:["Escada de autonomia","Transferência gradual","Conferência posterior","Microhabilidade","Reforço antes de punição"]}
+    moduladores:{C1:"Adicionar previsibilidade: rotina visual ou antecipaÃ§Ã£o.",C2:"Reduzir entrada em demanda: primeiro passo concreto ou tarefa de 2 minutos.",C3:"Economizar linguagem adulta: comando curto, esperar e evitar repetiÃ§Ã£o.",C4:"Prevenir escalada: protocolo de pausa leve.",C5:"Iniciar microautonomia: uma tarefa para a crianÃ§a participar mais."},
+    estrategias:{C1:["Rotina em 3 Passos","Checklist visual","AntecipaÃ§Ã£o","Contagem regressiva","ExternalizaÃ§Ã£o da informaÃ§Ã£o","Tempo externo"],C2:["Tarefa de 2 minutos","Primeiro passo concreto","Scaffolding / andaime","Ajuda mÃ­nima necessÃ¡ria","ReforÃ§o por inÃ­cio"],C3:["Comando curto","Regra dos 5 segundos","Economia de comandos","Recrutamento de atenÃ§Ã£o","ReduÃ§Ã£o de linguagem"],C4:["Protocolo de pausa","Limite calmo","Retomada pÃ³s-crise","TolerÃ¢ncia Ã  frustraÃ§Ã£o","ConsequÃªncia imediata","ConsequÃªncia previsÃ­vel"],C5:["Escada de autonomia","TransferÃªncia gradual","ConferÃªncia posterior","Microhabilidade","ReforÃ§o antes de puniÃ§Ã£o"]}
   },
-  F_MEDICACAO:{nome:"Clínico-Medicamentoso",codigo:"M",cor:"#5B8AF5",
+  F_MEDICACAO:{nome:"ClÃ­nico-Medicamentoso",codigo:"M",cor:"#5B8AF5",
     campos:["med_01","med_02","med_03","med_04","med_05"],
     itens:["M1","M2","M3","M4","M5"],
-    descricoes:["Dúvida se o tratamento atual funciona de forma suficiente","Efeito oscila entre manhã, escola, tarde e noite","Sinais como irritabilidade, sonolência, apetite reduzido, insônia ou piora no fim do dia","Prejuízo importante persiste em casa, escola ou tarefas","Insegurança sobre horário, duração, adesão ou necessidade de ajuste"],
-    blocos:{M1:"Monitoramento Clínico de 7 dias",M2:"Mapa de Efeito Diário",M3:"Diário de Efeitos Adversos",M4:"Comparativo Casa-Escola",M5:"Revisão de Adesão e Horários"},
+    descricoes:["DÃºvida se o tratamento atual funciona de forma suficiente","Efeito oscila entre manhÃ£, escola, tarde e noite","Sinais como irritabilidade, sonolÃªncia, apetite reduzido, insÃ´nia ou piora no fim do dia","PrejuÃ­zo importante persiste em casa, escola ou tarefas","InseguranÃ§a sobre horÃ¡rio, duraÃ§Ã£o, adesÃ£o ou necessidade de ajuste"],
+    blocos:{M1:"Monitoramento ClÃ­nico de 7 dias",M2:"Mapa de Efeito DiÃ¡rio",M3:"DiÃ¡rio de Efeitos Adversos",M4:"Comparativo Casa-Escola",M5:"RevisÃ£o de AdesÃ£o e HorÃ¡rios"},
     combinacoes:{
-      "":{codigo:"PM00",leitura:"Sem pressão alta isolada. Manutenção ativa com vigilância estruturada.",acao:"Manter vigilância estruturada e focar o item de maior pontuação relativa."},
-      "M1":{codigo:"PM01",leitura:"Dúvida de eficácia percebida.",acao:"Aplicar Monitoramento Clínico de 7 dias para separar expectativa, efeito real e prejuízo funcional."},
-      "M2":{codigo:"PM02",leitura:"Oscilação do efeito ao longo do dia.",acao:"Usar Mapa de Efeito Diário por horários: antes da escola, escola, almoço, tarde e noite."},
-      "M3":{codigo:"PM03",leitura:"Possível efeito adverso ou rebote.",acao:"Acionar Diário de Efeitos Adversos e avaliar necessidade de contato clínico."},
-      "M4":{codigo:"PM04",leitura:"Tratamento existe, mas funcionamento ainda está prejudicado.",acao:"Fazer Comparativo Casa-Escola para definir se é medicação, ambiente, rotina, escola ou comorbidade."},
-      "M5":{codigo:"PM05",leitura:"Insegurança operacional da família.",acao:"Revisar adesão, horário, duração, faltas, pausas e entendimento do plano."},
-      "M1,M2":{codigo:"PM06",leitura:"Dúvida de efeito associada à oscilação.",acao:"Monitorar por faixa horária e cruzar com relato escolar."},
-      "M1,M3":{codigo:"PM07",leitura:"Dúvida de eficácia misturada a possíveis efeitos adversos.",acao:"Separar benefício e custo: registrar melhora, efeitos indesejados e horários."},
-      "M1,M4":{codigo:"PM08",leitura:"Família duvida do tratamento porque prejuízo persiste.",acao:"Checar se prejuízo é sintoma residual, demanda ambiental ou alvo não medicamentoso."},
-      "M1,M5":{codigo:"PM09",leitura:"Dúvida de efeito com insegurança de uso.",acao:"Antes de discutir troca, conferir adesão, horário, regularidade e expectativas."},
-      "M2,M3":{codigo:"PM10",leitura:"Oscilação com possível rebote ou colateral.",acao:"Mapear horário de início, pico, queda e comportamento no fim do efeito."},
-      "M2,M4":{codigo:"PM11",leitura:"Efeito pode não cobrir períodos críticos.",acao:"Cruzar horários de prejuízo com rotina escolar e familiar."},
-      "M2,M5":{codigo:"PM12",leitura:"Oscilação aumenta insegurança dos pais.",acao:"Criar mapa simples: horário de uso, efeito percebido, queda e prejuízo."},
-      "M3,M4":{codigo:"PM13",leitura:"Prejuízo e possível efeito adverso simultâneo.",acao:"Diferenciar piora por colateral de prejuízo basal persistente."},
-      "M3,M5":{codigo:"PM14",leitura:"Efeitos percebidos aumentam insegurança familiar.",acao:"Fazer diário de sintomas físicos e emocionais antes de nova decisão."},
-      "M4,M5":{codigo:"PM15",leitura:"Prejuízo persistente e família insegura.",acao:"Reorganizar plano de acompanhamento e definir necessidade de revisão clínica."},
-      "M1,M2,M3":{codigo:"PM16",leitura:"Dúvida, oscilação e possível colateral.",acao:"Monitoramento Clínico de 7 dias obrigatório antes de interpretação definitiva."},
-      "M1,M2,M4":{codigo:"PM17",leitura:"Efeito incerto, oscilante e prejuízo persistente.",acao:"Fazer leitura funcional por ambiente e horário."},
-      "M1,M2,M5":{codigo:"PM18",leitura:"Família percebe efeito instável e não sabe conduzir.",acao:"Revisar uso, horários, expectativa de duração e critério de resposta."},
-      "M1,M3,M4":{codigo:"PM19",leitura:"Benefício duvidoso com possível custo funcional.",acao:"Considerar avaliação clínica mais próxima se houver piora recente."},
-      "M1,M3,M5":{codigo:"PM20",leitura:"Insegurança alta por possível efeito adverso.",acao:"Orientar registro objetivo; evitar decisões baseadas só em impressão do dia."},
-      "M1,M4,M5":{codigo:"PM21",leitura:"Tratamento não convence e prejuízo continua.",acao:"Reavaliar metas: o que se espera da medicação e o que exige intervenção não medicamentosa."},
-      "M2,M3,M4":{codigo:"PM22",leitura:"Oscilação, colateral e prejuízo coexistem.",acao:"Alta prioridade: mapear cronologia e discutir revisão clínica."},
-      "M2,M3,M5":{codigo:"PM23",leitura:"Família insegura por oscilação e sintomas associados.",acao:"Diário por horário + checagem de adesão + orientação de acionamento médico."},
-      "M2,M4,M5":{codigo:"PM24",leitura:"Efeito irregular com prejuízo e insegurança.",acao:"Comparativo casa-escola e revisão do plano de uso."},
-      "M3,M4,M5":{codigo:"PM25",leitura:"Possível efeito adverso com prejuízo e insegurança.",acao:"Tratar como suporte prioritário; avaliar contato clínico em curto prazo."},
-      "M1,M2,M3,M4":{codigo:"PM26",leitura:"Quatro áreas clínicas pressionadas.",acao:"Suporte intensivo: monitoramento objetivo e possível revisão clínica."},
-      "M1,M2,M3,M5":{codigo:"PM27",leitura:"Família insegura diante de oscilação e possíveis colaterais.",acao:"Organizar dados antes da consulta: efeito, queda, sono, apetite, humor e escola."},
-      "M1,M2,M4,M5":{codigo:"PM28",leitura:"Efeito incerto, instável, prejuízo persistente e insegurança.",acao:"Reavaliar plano global: resposta medicamentosa versus ambiente desorganizado."},
-      "M1,M3,M4,M5":{codigo:"PM29",leitura:"Dúvida de efeito, colateral, prejuízo e insegurança.",acao:"Alta prioridade: contato clínico ou revisão programada em curto prazo."},
-      "M2,M3,M4,M5":{codigo:"PM30",leitura:"Oscilação, colateral, prejuízo e insegurança.",acao:"Provável instabilidade do plano medicamentoso; organizar monitoramento."},
-      "M1,M2,M3,M4,M5":{codigo:"PM31",leitura:"Todos os itens altos. Pilar Clínico-Medicamentoso em suporte intensivo.",acao:"Não resolver por mensagem solta; precisa de leitura clínica estruturada."}
+      "":{codigo:"PM00",leitura:"Sem pressÃ£o alta isolada. ManutenÃ§Ã£o ativa com vigilÃ¢ncia estruturada.",acao:"Manter vigilÃ¢ncia estruturada e focar o item de maior pontuaÃ§Ã£o relativa."},
+      "M1":{codigo:"PM01",leitura:"DÃºvida de eficÃ¡cia percebida.",acao:"Aplicar Monitoramento ClÃ­nico de 7 dias para separar expectativa, efeito real e prejuÃ­zo funcional."},
+      "M2":{codigo:"PM02",leitura:"OscilaÃ§Ã£o do efeito ao longo do dia.",acao:"Usar Mapa de Efeito DiÃ¡rio por horÃ¡rios: antes da escola, escola, almoÃ§o, tarde e noite."},
+      "M3":{codigo:"PM03",leitura:"PossÃ­vel efeito adverso ou rebote.",acao:"Acionar DiÃ¡rio de Efeitos Adversos e avaliar necessidade de contato clÃ­nico."},
+      "M4":{codigo:"PM04",leitura:"Tratamento existe, mas funcionamento ainda estÃ¡ prejudicado.",acao:"Fazer Comparativo Casa-Escola para definir se Ã© medicaÃ§Ã£o, ambiente, rotina, escola ou comorbidade."},
+      "M5":{codigo:"PM05",leitura:"InseguranÃ§a operacional da famÃ­lia.",acao:"Revisar adesÃ£o, horÃ¡rio, duraÃ§Ã£o, faltas, pausas e entendimento do plano."},
+      "M1,M2":{codigo:"PM06",leitura:"DÃºvida de efeito associada Ã  oscilaÃ§Ã£o.",acao:"Monitorar por faixa horÃ¡ria e cruzar com relato escolar."},
+      "M1,M3":{codigo:"PM07",leitura:"DÃºvida de eficÃ¡cia misturada a possÃ­veis efeitos adversos.",acao:"Separar benefÃ­cio e custo: registrar melhora, efeitos indesejados e horÃ¡rios."},
+      "M1,M4":{codigo:"PM08",leitura:"FamÃ­lia duvida do tratamento porque prejuÃ­zo persiste.",acao:"Checar se prejuÃ­zo Ã© sintoma residual, demanda ambiental ou alvo nÃ£o medicamentoso."},
+      "M1,M5":{codigo:"PM09",leitura:"DÃºvida de efeito com inseguranÃ§a de uso.",acao:"Antes de discutir troca, conferir adesÃ£o, horÃ¡rio, regularidade e expectativas."},
+      "M2,M3":{codigo:"PM10",leitura:"OscilaÃ§Ã£o com possÃ­vel rebote ou colateral.",acao:"Mapear horÃ¡rio de inÃ­cio, pico, queda e comportamento no fim do efeito."},
+      "M2,M4":{codigo:"PM11",leitura:"Efeito pode nÃ£o cobrir perÃ­odos crÃ­ticos.",acao:"Cruzar horÃ¡rios de prejuÃ­zo com rotina escolar e familiar."},
+      "M2,M5":{codigo:"PM12",leitura:"OscilaÃ§Ã£o aumenta inseguranÃ§a dos pais.",acao:"Criar mapa simples: horÃ¡rio de uso, efeito percebido, queda e prejuÃ­zo."},
+      "M3,M4":{codigo:"PM13",leitura:"PrejuÃ­zo e possÃ­vel efeito adverso simultÃ¢neo.",acao:"Diferenciar piora por colateral de prejuÃ­zo basal persistente."},
+      "M3,M5":{codigo:"PM14",leitura:"Efeitos percebidos aumentam inseguranÃ§a familiar.",acao:"Fazer diÃ¡rio de sintomas fÃ­sicos e emocionais antes de nova decisÃ£o."},
+      "M4,M5":{codigo:"PM15",leitura:"PrejuÃ­zo persistente e famÃ­lia insegura.",acao:"Reorganizar plano de acompanhamento e definir necessidade de revisÃ£o clÃ­nica."},
+      "M1,M2,M3":{codigo:"PM16",leitura:"DÃºvida, oscilaÃ§Ã£o e possÃ­vel colateral.",acao:"Monitoramento ClÃ­nico de 7 dias obrigatÃ³rio antes de interpretaÃ§Ã£o definitiva."},
+      "M1,M2,M4":{codigo:"PM17",leitura:"Efeito incerto, oscilante e prejuÃ­zo persistente.",acao:"Fazer leitura funcional por ambiente e horÃ¡rio."},
+      "M1,M2,M5":{codigo:"PM18",leitura:"FamÃ­lia percebe efeito instÃ¡vel e nÃ£o sabe conduzir.",acao:"Revisar uso, horÃ¡rios, expectativa de duraÃ§Ã£o e critÃ©rio de resposta."},
+      "M1,M3,M4":{codigo:"PM19",leitura:"BenefÃ­cio duvidoso com possÃ­vel custo funcional.",acao:"Considerar avaliaÃ§Ã£o clÃ­nica mais prÃ³xima se houver piora recente."},
+      "M1,M3,M5":{codigo:"PM20",leitura:"InseguranÃ§a alta por possÃ­vel efeito adverso.",acao:"Orientar registro objetivo; evitar decisÃµes baseadas sÃ³ em impressÃ£o do dia."},
+      "M1,M4,M5":{codigo:"PM21",leitura:"Tratamento nÃ£o convence e prejuÃ­zo continua.",acao:"Reavaliar metas: o que se espera da medicaÃ§Ã£o e o que exige intervenÃ§Ã£o nÃ£o medicamentosa."},
+      "M2,M3,M4":{codigo:"PM22",leitura:"OscilaÃ§Ã£o, colateral e prejuÃ­zo coexistem.",acao:"Alta prioridade: mapear cronologia e discutir revisÃ£o clÃ­nica."},
+      "M2,M3,M5":{codigo:"PM23",leitura:"FamÃ­lia insegura por oscilaÃ§Ã£o e sintomas associados.",acao:"DiÃ¡rio por horÃ¡rio + checagem de adesÃ£o + orientaÃ§Ã£o de acionamento mÃ©dico."},
+      "M2,M4,M5":{codigo:"PM24",leitura:"Efeito irregular com prejuÃ­zo e inseguranÃ§a.",acao:"Comparativo casa-escola e revisÃ£o do plano de uso."},
+      "M3,M4,M5":{codigo:"PM25",leitura:"PossÃ­vel efeito adverso com prejuÃ­zo e inseguranÃ§a.",acao:"Tratar como suporte prioritÃ¡rio; avaliar contato clÃ­nico em curto prazo."},
+      "M1,M2,M3,M4":{codigo:"PM26",leitura:"Quatro Ã¡reas clÃ­nicas pressionadas.",acao:"Suporte intensivo: monitoramento objetivo e possÃ­vel revisÃ£o clÃ­nica."},
+      "M1,M2,M3,M5":{codigo:"PM27",leitura:"FamÃ­lia insegura diante de oscilaÃ§Ã£o e possÃ­veis colaterais.",acao:"Organizar dados antes da consulta: efeito, queda, sono, apetite, humor e escola."},
+      "M1,M2,M4,M5":{codigo:"PM28",leitura:"Efeito incerto, instÃ¡vel, prejuÃ­zo persistente e inseguranÃ§a.",acao:"Reavaliar plano global: resposta medicamentosa versus ambiente desorganizado."},
+      "M1,M3,M4,M5":{codigo:"PM29",leitura:"DÃºvida de efeito, colateral, prejuÃ­zo e inseguranÃ§a.",acao:"Alta prioridade: contato clÃ­nico ou revisÃ£o programada em curto prazo."},
+      "M2,M3,M4,M5":{codigo:"PM30",leitura:"OscilaÃ§Ã£o, colateral, prejuÃ­zo e inseguranÃ§a.",acao:"ProvÃ¡vel instabilidade do plano medicamentoso; organizar monitoramento."},
+      "M1,M2,M3,M4,M5":{codigo:"PM31",leitura:"Todos os itens altos. Pilar ClÃ­nico-Medicamentoso em suporte intensivo.",acao:"NÃ£o resolver por mensagem solta; precisa de leitura clÃ­nica estruturada."}
     },
-    moduladores:{M1:"Perguntar qual melhora a família esperava e qual melhora observou.",M2:"Adicionar registro por horário.",M3:"Rastrear sono, apetite, irritabilidade, dor de cabeça e dor abdominal.",M4:"Cruzar funcionamento em casa e escola.",M5:"Revisar adesão, horários e entendimento do plano."},
-    estrategias:{M1:["Monitoramento Clínico de 7 dias","Comparativo Casa-Escola"],M2:["Mapa de Efeito Diário"],M3:["Diário de Efeitos Adversos"],M4:["Comparativo Casa-Escola","Escola360"],M5:["Revisão de Adesão e Horários"]}
+    moduladores:{M1:"Perguntar qual melhora a famÃ­lia esperava e qual melhora observou.",M2:"Adicionar registro por horÃ¡rio.",M3:"Rastrear sono, apetite, irritabilidade, dor de cabeÃ§a e dor abdominal.",M4:"Cruzar funcionamento em casa e escola.",M5:"Revisar adesÃ£o, horÃ¡rios e entendimento do plano."},
+    estrategias:{M1:["Monitoramento ClÃ­nico de 7 dias","Comparativo Casa-Escola"],M2:["Mapa de Efeito DiÃ¡rio"],M3:["DiÃ¡rio de Efeitos Adversos"],M4:["Comparativo Casa-Escola","Escola360"],M5:["RevisÃ£o de AdesÃ£o e HorÃ¡rios"]}
   },
   F_ESCOLA:{nome:"Escola e Aprendizagem",codigo:"E",cor:"#34D399",
     campos:["esc_01","esc_02","esc_03","esc_04","esc_05"],
     itens:["E1","E2","E3","E4","E5"],
-    descricoes:["Escola relata prejuízo de atenção, comportamento ou rendimento","Provas, lições, cópias ou tarefas são fonte de dificuldade importante","Dificuldade de organização com material, agenda, prazos ou instruções","Escola aponta problemas sem clareza sobre adaptação prática","Comunicação família-escola-tratamento insuficiente ou desalinhada"],
-    blocos:{E1:"Escola360",E2:"Plano de Tarefa e Prova",E3:"Organização Escolar Guiada",E4:"Adaptação Prioritária",E5:"Ponte Família-Escola"},
+    descricoes:["Escola relata prejuÃ­zo de atenÃ§Ã£o, comportamento ou rendimento","Provas, liÃ§Ãµes, cÃ³pias ou tarefas sÃ£o fonte de dificuldade importante","Dificuldade de organizaÃ§Ã£o com material, agenda, prazos ou instruÃ§Ãµes","Escola aponta problemas sem clareza sobre adaptaÃ§Ã£o prÃ¡tica","ComunicaÃ§Ã£o famÃ­lia-escola-tratamento insuficiente ou desalinhada"],
+    blocos:{E1:"Escola360",E2:"Plano de Tarefa e Prova",E3:"OrganizaÃ§Ã£o Escolar Guiada",E4:"AdaptaÃ§Ã£o PrioritÃ¡ria",E5:"Ponte FamÃ­lia-Escola"},
     combinacoes:{
-      "":{codigo:"PE00",leitura:"Sem pressão alta isolada, mas há possível necessidade preventiva.",acao:"Escolher o item escolar mais pontuado e manter acompanhamento proporcional."},
-      "E1":{codigo:"PE01",leitura:"A escola percebe prejuízo, mas o mecanismo ainda não está claro.",acao:"Solicitar descrição objetiva: quando, onde, frequência e impacto."},
-      "E2":{codigo:"PE02",leitura:"Gargalo em prova, lição, cópia ou tarefa.",acao:"Acionar Plano de Tarefa e Prova."},
-      "E3":{codigo:"PE03",leitura:"Eixo central é organização escolar.",acao:"Acionar Organização Escolar Guiada."},
-      "E4":{codigo:"PE04",leitura:"A escola reclama, mas não traduz em adaptação.",acao:"Uma queixa, uma estratégia, um prazo."},
-      "E5":{codigo:"PE05",leitura:"Desalinhamento de comunicação.",acao:"Acionar Ponte Família-Escola."},
-      "E1,E2":{codigo:"PE06",leitura:"Queixa escolar aparece principalmente em desempenho/tarefas.",acao:"Separar atenção, dificuldade acadêmica e demanda executiva."},
-      "E1,E3":{codigo:"PE07",leitura:"Prejuízo percebido com desorganização evidente.",acao:"Criar plano de material, agenda e instruções."},
-      "E1,E4":{codigo:"PE08",leitura:"Escola identifica problema, mas não sabe adaptar.",acao:"Traduzir queixa em adaptação testável por 14 dias."},
-      "E1,E5":{codigo:"PE09",leitura:"Escola reclama e comunicação está desalinhada.",acao:"Fazer contato estruturado com escola antes de orientar família isoladamente."},
-      "E2,E3":{codigo:"PE10",leitura:"Dificuldade acadêmica associada à organização.",acao:"Plano de prova/tarefa + checklist de material e prazos."},
-      "E2,E4":{codigo:"PE11",leitura:"Dificuldade em tarefas/provas sem adaptação definida.",acao:"Definir uma adaptação: tempo, instrução curta, divisão de tarefa ou redução de cópia."},
-      "E2,E5":{codigo:"PE12",leitura:"Dificuldade acadêmica com comunicação falha.",acao:"Solicitar exemplos concretos de prova, tarefa e lição."},
-      "E3,E4":{codigo:"PE13",leitura:"Desorganização reconhecida sem plano prático.",acao:"Criar rotina escolar mínima: agenda, material, conferência."},
-      "E3,E5":{codigo:"PE14",leitura:"Desorganização piora por baixa coordenação família-escola.",acao:"Criar canal simples de comunicação e checklist comum."},
-      "E4,E5":{codigo:"PE15",leitura:"Queixa vaga e comunicação ruim.",acao:"Organizar a conversa antes de produzir relatório longo."},
-      "E1,E2,E3":{codigo:"PE16",leitura:"Prejuízo escolar amplo: atenção, tarefa e organização.",acao:"Acionar Escola360 com três alvos, iniciando por apenas um."},
-      "E1,E2,E4":{codigo:"PE17",leitura:"Queixa e prejuízo existem, mas falta adaptação.",acao:"Escolher adaptação prioritária para tarefa/prova."},
-      "E1,E2,E5":{codigo:"PE18",leitura:"Prejuízo escolar com comunicação insuficiente.",acao:"Reunir dados de professor e família antes de definir conduta."},
-      "E1,E3,E4":{codigo:"PE19",leitura:"Queixa escolar com desorganização e ausência de adaptação.",acao:"Plano de organização escolar + adaptação simples em sala."},
-      "E1,E3,E5":{codigo:"PE20",leitura:"Prejuízo e desorganização com desalinhamento.",acao:"Ponte Família-Escola + checklist semanal."},
-      "E1,E4,E5":{codigo:"PE21",leitura:"Escola reclama, não adapta e comunicação falha.",acao:"Alinhar expectativas e solicitar uma queixa operacional."},
-      "E2,E3,E4":{codigo:"PE22",leitura:"Tarefa/prova e organização sem adaptação definida.",acao:"Plano de tarefa/prova + organização guiada + uma adaptação."},
-      "E2,E3,E5":{codigo:"PE23",leitura:"Dificuldade acadêmica e organização com comunicação frágil.",acao:"Enviar roteiro de observação para professor."},
-      "E2,E4,E5":{codigo:"PE24",leitura:"Provas/tarefas prejudicadas e escola desalinhada.",acao:"Definir ajuste acadêmico e canal de retorno em 14 a 30 dias."},
-      "E3,E4,E5":{codigo:"PE25",leitura:"Desorganização sem plano e sem comunicação eficaz.",acao:"Escola360 focado em organização, checklist e responsável definido."},
-      "E1,E2,E3,E4":{codigo:"PE26",leitura:"Prejuízo amplo sem adaptação clara.",acao:"Escolher uma adaptação e um indicador de melhora."},
-      "E1,E2,E3,E5":{codigo:"PE27",leitura:"Prejuízo amplo com comunicação desalinhada.",acao:"Fazer ponte escola-família antes de escalar intervenções."},
-      "E1,E2,E4,E5":{codigo:"PE28",leitura:"Queixa, tarefa/prova, falta de adaptação e comunicação frágil.",acao:"Contato estruturado com escola; evitar orientação só para os pais."},
-      "E1,E3,E4,E5":{codigo:"PE29",leitura:"Queixa, desorganização, falta de plano e desalinhamento.",acao:"Plano escolar mínimo com rotina de conferência."},
-      "E2,E3,E4,E5":{codigo:"PE30",leitura:"Dificuldade acadêmica e executiva com escola sem plano.",acao:"Escola360 com foco em tarefa, prova e organização."},
-      "E1,E2,E3,E4,E5":{codigo:"PE31",leitura:"Pilar Escola em suporte intensivo. Exige ação coordenada com escola.",acao:"Não apenas orientação familiar — coordenação escola-família obrigatória."}
+      "":{codigo:"PE00",leitura:"Sem pressÃ£o alta isolada, mas hÃ¡ possÃ­vel necessidade preventiva.",acao:"Escolher o item escolar mais pontuado e manter acompanhamento proporcional."},
+      "E1":{codigo:"PE01",leitura:"A escola percebe prejuÃ­zo, mas o mecanismo ainda nÃ£o estÃ¡ claro.",acao:"Solicitar descriÃ§Ã£o objetiva: quando, onde, frequÃªncia e impacto."},
+      "E2":{codigo:"PE02",leitura:"Gargalo em prova, liÃ§Ã£o, cÃ³pia ou tarefa.",acao:"Acionar Plano de Tarefa e Prova."},
+      "E3":{codigo:"PE03",leitura:"Eixo central Ã© organizaÃ§Ã£o escolar.",acao:"Acionar OrganizaÃ§Ã£o Escolar Guiada."},
+      "E4":{codigo:"PE04",leitura:"A escola reclama, mas nÃ£o traduz em adaptaÃ§Ã£o.",acao:"Uma queixa, uma estratÃ©gia, um prazo."},
+      "E5":{codigo:"PE05",leitura:"Desalinhamento de comunicaÃ§Ã£o.",acao:"Acionar Ponte FamÃ­lia-Escola."},
+      "E1,E2":{codigo:"PE06",leitura:"Queixa escolar aparece principalmente em desempenho/tarefas.",acao:"Separar atenÃ§Ã£o, dificuldade acadÃªmica e demanda executiva."},
+      "E1,E3":{codigo:"PE07",leitura:"PrejuÃ­zo percebido com desorganizaÃ§Ã£o evidente.",acao:"Criar plano de material, agenda e instruÃ§Ãµes."},
+      "E1,E4":{codigo:"PE08",leitura:"Escola identifica problema, mas nÃ£o sabe adaptar.",acao:"Traduzir queixa em adaptaÃ§Ã£o testÃ¡vel por 14 dias."},
+      "E1,E5":{codigo:"PE09",leitura:"Escola reclama e comunicaÃ§Ã£o estÃ¡ desalinhada.",acao:"Fazer contato estruturado com escola antes de orientar famÃ­lia isoladamente."},
+      "E2,E3":{codigo:"PE10",leitura:"Dificuldade acadÃªmica associada Ã  organizaÃ§Ã£o.",acao:"Plano de prova/tarefa + checklist de material e prazos."},
+      "E2,E4":{codigo:"PE11",leitura:"Dificuldade em tarefas/provas sem adaptaÃ§Ã£o definida.",acao:"Definir uma adaptaÃ§Ã£o: tempo, instruÃ§Ã£o curta, divisÃ£o de tarefa ou reduÃ§Ã£o de cÃ³pia."},
+      "E2,E5":{codigo:"PE12",leitura:"Dificuldade acadÃªmica com comunicaÃ§Ã£o falha.",acao:"Solicitar exemplos concretos de prova, tarefa e liÃ§Ã£o."},
+      "E3,E4":{codigo:"PE13",leitura:"DesorganizaÃ§Ã£o reconhecida sem plano prÃ¡tico.",acao:"Criar rotina escolar mÃ­nima: agenda, material, conferÃªncia."},
+      "E3,E5":{codigo:"PE14",leitura:"DesorganizaÃ§Ã£o piora por baixa coordenaÃ§Ã£o famÃ­lia-escola.",acao:"Criar canal simples de comunicaÃ§Ã£o e checklist comum."},
+      "E4,E5":{codigo:"PE15",leitura:"Queixa vaga e comunicaÃ§Ã£o ruim.",acao:"Organizar a conversa antes de produzir relatÃ³rio longo."},
+      "E1,E2,E3":{codigo:"PE16",leitura:"PrejuÃ­zo escolar amplo: atenÃ§Ã£o, tarefa e organizaÃ§Ã£o.",acao:"Acionar Escola360 com trÃªs alvos, iniciando por apenas um."},
+      "E1,E2,E4":{codigo:"PE17",leitura:"Queixa e prejuÃ­zo existem, mas falta adaptaÃ§Ã£o.",acao:"Escolher adaptaÃ§Ã£o prioritÃ¡ria para tarefa/prova."},
+      "E1,E2,E5":{codigo:"PE18",leitura:"PrejuÃ­zo escolar com comunicaÃ§Ã£o insuficiente.",acao:"Reunir dados de professor e famÃ­lia antes de definir conduta."},
+      "E1,E3,E4":{codigo:"PE19",leitura:"Queixa escolar com desorganizaÃ§Ã£o e ausÃªncia de adaptaÃ§Ã£o.",acao:"Plano de organizaÃ§Ã£o escolar + adaptaÃ§Ã£o simples em sala."},
+      "E1,E3,E5":{codigo:"PE20",leitura:"PrejuÃ­zo e desorganizaÃ§Ã£o com desalinhamento.",acao:"Ponte FamÃ­lia-Escola + checklist semanal."},
+      "E1,E4,E5":{codigo:"PE21",leitura:"Escola reclama, nÃ£o adapta e comunicaÃ§Ã£o falha.",acao:"Alinhar expectativas e solicitar uma queixa operacional."},
+      "E2,E3,E4":{codigo:"PE22",leitura:"Tarefa/prova e organizaÃ§Ã£o sem adaptaÃ§Ã£o definida.",acao:"Plano de tarefa/prova + organizaÃ§Ã£o guiada + uma adaptaÃ§Ã£o."},
+      "E2,E3,E5":{codigo:"PE23",leitura:"Dificuldade acadÃªmica e organizaÃ§Ã£o com comunicaÃ§Ã£o frÃ¡gil.",acao:"Enviar roteiro de observaÃ§Ã£o para professor."},
+      "E2,E4,E5":{codigo:"PE24",leitura:"Provas/tarefas prejudicadas e escola desalinhada.",acao:"Definir ajuste acadÃªmico e canal de retorno em 14 a 30 dias."},
+      "E3,E4,E5":{codigo:"PE25",leitura:"DesorganizaÃ§Ã£o sem plano e sem comunicaÃ§Ã£o eficaz.",acao:"Escola360 focado em organizaÃ§Ã£o, checklist e responsÃ¡vel definido."},
+      "E1,E2,E3,E4":{codigo:"PE26",leitura:"PrejuÃ­zo amplo sem adaptaÃ§Ã£o clara.",acao:"Escolher uma adaptaÃ§Ã£o e um indicador de melhora."},
+      "E1,E2,E3,E5":{codigo:"PE27",leitura:"PrejuÃ­zo amplo com comunicaÃ§Ã£o desalinhada.",acao:"Fazer ponte escola-famÃ­lia antes de escalar intervenÃ§Ãµes."},
+      "E1,E2,E4,E5":{codigo:"PE28",leitura:"Queixa, tarefa/prova, falta de adaptaÃ§Ã£o e comunicaÃ§Ã£o frÃ¡gil.",acao:"Contato estruturado com escola; evitar orientaÃ§Ã£o sÃ³ para os pais."},
+      "E1,E3,E4,E5":{codigo:"PE29",leitura:"Queixa, desorganizaÃ§Ã£o, falta de plano e desalinhamento.",acao:"Plano escolar mÃ­nimo com rotina de conferÃªncia."},
+      "E2,E3,E4,E5":{codigo:"PE30",leitura:"Dificuldade acadÃªmica e executiva com escola sem plano.",acao:"Escola360 com foco em tarefa, prova e organizaÃ§Ã£o."},
+      "E1,E2,E3,E4,E5":{codigo:"PE31",leitura:"Pilar Escola em suporte intensivo. Exige aÃ§Ã£o coordenada com escola.",acao:"NÃ£o apenas orientaÃ§Ã£o familiar â coordenaÃ§Ã£o escola-famÃ­lia obrigatÃ³ria."}
     },
-    moduladores:{E1:"Solicitar relato objetivo do professor.",E2:"Incluir estratégia de prova/tarefa antes de crise acadêmica.",E3:"Introduzir checklist escolar leve.",E4:"Definir uma adaptação prioritária.",E5:"Organizar canal de comunicação com escola."},
-    estrategias:{E1:["Escola360","Comparativo Casa-Escola","Indicador escolar de melhora"],E2:["Plano de Tarefa e Prova","Adaptação prioritária","Tarefa de 5 minutos","Scaffolding / andaime"],E3:["Organização Escolar Guiada","Checklist visual","Central Executiva","Externalização da informação"],E4:["Adaptação prioritária","Escola360","Indicador escolar de melhora"],E5:["Ponte Família-Escola","Escola360"]}
+    moduladores:{E1:"Solicitar relato objetivo do professor.",E2:"Incluir estratÃ©gia de prova/tarefa antes de crise acadÃªmica.",E3:"Introduzir checklist escolar leve.",E4:"Definir uma adaptaÃ§Ã£o prioritÃ¡ria.",E5:"Organizar canal de comunicaÃ§Ã£o com escola."},
+    estrategias:{E1:["Escola360","Comparativo Casa-Escola","Indicador escolar de melhora"],E2:["Plano de Tarefa e Prova","AdaptaÃ§Ã£o prioritÃ¡ria","Tarefa de 5 minutos","Scaffolding / andaime"],E3:["OrganizaÃ§Ã£o Escolar Guiada","Checklist visual","Central Executiva","ExternalizaÃ§Ã£o da informaÃ§Ã£o"],E4:["AdaptaÃ§Ã£o prioritÃ¡ria","Escola360","Indicador escolar de melhora"],E5:["Ponte FamÃ­lia-Escola","Escola360"]}
   },
-  F_SOCIAL:{nome:"Regulação Emocional e Comportamento Social",codigo:"S",cor:"#A78BFA",
+  F_SOCIAL:{nome:"RegulaÃ§Ã£o Emocional e Comportamento Social",codigo:"S",cor:"#A78BFA",
     campos:["soc_01","soc_02","soc_03","soc_04","soc_05"],
     itens:["S1","S2","S3","S4","S5"],
-    descricoes:["Conflitos frequentes com colegas, irmãos ou adultos","Pequenas frustrações geram reações emocionais intensas","Impulsividade verbal ou física prejudica relações","Dificuldade de reparar, pedir desculpas ou reconhecer impacto","Rejeição, isolamento, exclusão ou desgaste social relevante"],
-    blocos:{S1:"Mapa de Gatilhos Sociais",S2:"Pausa Social Combinada",S3:"Pausa Social Combinada",S4:"Treino de Reparação",S5:"Plano de Pertencimento"},
+    descricoes:["Conflitos frequentes com colegas, irmÃ£os ou adultos","Pequenas frustraÃ§Ãµes geram reaÃ§Ãµes emocionais intensas","Impulsividade verbal ou fÃ­sica prejudica relaÃ§Ãµes","Dificuldade de reparar, pedir desculpas ou reconhecer impacto","RejeiÃ§Ã£o, isolamento, exclusÃ£o ou desgaste social relevante"],
+    blocos:{S1:"Mapa de Gatilhos Sociais",S2:"Pausa Social Combinada",S3:"Pausa Social Combinada",S4:"Treino de ReparaÃ§Ã£o",S5:"Plano de Pertencimento"},
     combinacoes:{
-      "":{codigo:"PS00",leitura:"Sem pressão alta isolada, mas pode haver risco social preventivo.",acao:"Monitorar item mais pontuado e orientar manutenção ativa."},
-      "S1":{codigo:"PS01",leitura:"Frequência de conflito é o ponto principal.",acao:"Mapear onde, com quem e em que momento ocorre."},
-      "S2":{codigo:"PS02",leitura:"Baixa tolerância à frustração.",acao:"Trabalhar Pausa Social Combinada e linguagem de frustração."},
-      "S3":{codigo:"PS03",leitura:"Impulsividade está ferindo relações.",acao:"Criar estratégia de interrupção antes do ato ou fala impulsiva."},
-      "S4":{codigo:"PS04",leitura:"Dificuldade está na reparação pós-episódio.",acao:"Treino de reparação: reconhecer, reparar e retomar."},
-      "S5":{codigo:"PS05",leitura:"Dano principal é pertencimento social.",acao:"Plano de Pertencimento e avaliação de sofrimento."},
-      "S1,S2":{codigo:"PS06",leitura:"Conflitos nascem de frustrações mal toleradas.",acao:"Mapear gatilho e treinar pausa antes da reação."},
-      "S1,S3":{codigo:"PS07",leitura:"Conflito frequente com impulsividade verbal/física.",acao:"Intervenção antes do conflito: sinais, pausa, supervisão."},
-      "S1,S4":{codigo:"PS08",leitura:"A criança conflita e não repara.",acao:"Treino de reparação obrigatório após episódio."},
-      "S1,S5":{codigo:"PS09",leitura:"Conflito já produz exclusão ou desgaste.",acao:"Plano de redução de conflito + pertencimento social."},
-      "S2,S3":{codigo:"PS10",leitura:"Frustração vira impulsividade.",acao:"Pausa combinada e regra de segurança: sentir pode, agredir não."},
-      "S2,S4":{codigo:"PS11",leitura:"Criança explode e depois não consegue reparar.",acao:"Separar momento de crise do momento de reparação."},
-      "S2,S5":{codigo:"PS12",leitura:"Baixa tolerância à frustração afeta pertencimento.",acao:"Treinar frustração em situações pequenas e previsíveis."},
-      "S3,S4":{codigo:"PS13",leitura:"Impulsividade causa dano e reparação falha.",acao:"Criar roteiro de reparação simples e repetível."},
-      "S3,S5":{codigo:"PS14",leitura:"Impulsividade leva à rejeição.",acao:"Reduzir episódios de alto impacto e orientar ambiente."},
-      "S4,S5":{codigo:"PS15",leitura:"Falta de reparação mantém rejeição ou afastamento.",acao:"Reparação assistida e reconstrução de vínculo."},
-      "S1,S2,S3":{codigo:"PS16",leitura:"Conflito, frustração e impulsividade formam ciclo rápido.",acao:"Plano de Regulação e Reparação com foco em prevenção."},
-      "S1,S2,S4":{codigo:"PS17",leitura:"Conflito por frustração sem reparação suficiente.",acao:"Pausa + retomada pós-crise + reparação."},
-      "S1,S2,S5":{codigo:"PS18",leitura:"Conflitos por frustração prejudicam pertencimento.",acao:"Reduzir exposição a gatilhos sem treino e criar contexto de sucesso social."},
-      "S1,S3,S4":{codigo:"PS19",leitura:"Conflito impulsivo com falha de reparação.",acao:"Interromper padrão antes, durante e depois do episódio."},
-      "S1,S3,S5":{codigo:"PS20",leitura:"Conflito impulsivo gerando rejeição.",acao:"Plano de segurança social e alinhamento com escola/família."},
-      "S1,S4,S5":{codigo:"PS21",leitura:"Conflitos sem reparação sustentam exclusão.",acao:"Reparação guiada + reconstrução gradual de confiança."},
-      "S2,S3,S4":{codigo:"PS22",leitura:"Frustração, impulsividade e reparação ruim.",acao:"Treinar frase de pausa e roteiro pós-episódio."},
-      "S2,S3,S5":{codigo:"PS23",leitura:"Frustração impulsiva já impacta pertencimento.",acao:"Plano de pertencimento com ambientes estruturados."},
-      "S2,S4,S5":{codigo:"PS24",leitura:"Explosão emocional sem reparação gera afastamento.",acao:"Trabalhar reparação depois de acalmar; não exigir insight no pico."},
-      "S3,S4,S5":{codigo:"PS25",leitura:"Impulsividade e ausência de reparação geram rejeição.",acao:"Redução de dano social + treino de reparação + supervisão."},
-      "S1,S2,S3,S4":{codigo:"PS26",leitura:"Ciclo completo de conflito sem pertencimento como queixa central.",acao:"Suporte prioritário: prevenir escalada e reparar depois."},
-      "S1,S2,S3,S5":{codigo:"PS27",leitura:"Conflito impulsivo com prejuízo social relevante.",acao:"Suporte intensivo se houver agressão ou exclusão."},
-      "S1,S2,S4,S5":{codigo:"PS28",leitura:"Conflito emocional sem reparação e com exclusão.",acao:"Plano de Regulação e Reparação + Pertencimento."},
-      "S1,S3,S4,S5":{codigo:"PS29",leitura:"Conflito impulsivo, sem reparação, com dano social.",acao:"Alta prioridade: reduzir dano, alinhar adultos e escola."},
-      "S2,S3,S4,S5":{codigo:"PS30",leitura:"Frustração/impulsividade sem reparação e com isolamento.",acao:"Plano intensivo de regulação e pertencimento."},
-      "S1,S2,S3,S4,S5":{codigo:"PS31",leitura:"Pilar Social em suporte intensivo. Exige plano de segurança, regulação e reparação.",acao:"Plano de segurança, regulação e reparação obrigatórios."}
+      "":{codigo:"PS00",leitura:"Sem pressÃ£o alta isolada, mas pode haver risco social preventivo.",acao:"Monitorar item mais pontuado e orientar manutenÃ§Ã£o ativa."},
+      "S1":{codigo:"PS01",leitura:"FrequÃªncia de conflito Ã© o ponto principal.",acao:"Mapear onde, com quem e em que momento ocorre."},
+      "S2":{codigo:"PS02",leitura:"Baixa tolerÃ¢ncia Ã  frustraÃ§Ã£o.",acao:"Trabalhar Pausa Social Combinada e linguagem de frustraÃ§Ã£o."},
+      "S3":{codigo:"PS03",leitura:"Impulsividade estÃ¡ ferindo relaÃ§Ãµes.",acao:"Criar estratÃ©gia de interrupÃ§Ã£o antes do ato ou fala impulsiva."},
+      "S4":{codigo:"PS04",leitura:"Dificuldade estÃ¡ na reparaÃ§Ã£o pÃ³s-episÃ³dio.",acao:"Treino de reparaÃ§Ã£o: reconhecer, reparar e retomar."},
+      "S5":{codigo:"PS05",leitura:"Dano principal Ã© pertencimento social.",acao:"Plano de Pertencimento e avaliaÃ§Ã£o de sofrimento."},
+      "S1,S2":{codigo:"PS06",leitura:"Conflitos nascem de frustraÃ§Ãµes mal toleradas.",acao:"Mapear gatilho e treinar pausa antes da reaÃ§Ã£o."},
+      "S1,S3":{codigo:"PS07",leitura:"Conflito frequente com impulsividade verbal/fÃ­sica.",acao:"IntervenÃ§Ã£o antes do conflito: sinais, pausa, supervisÃ£o."},
+      "S1,S4":{codigo:"PS08",leitura:"A crianÃ§a conflita e nÃ£o repara.",acao:"Treino de reparaÃ§Ã£o obrigatÃ³rio apÃ³s episÃ³dio."},
+      "S1,S5":{codigo:"PS09",leitura:"Conflito jÃ¡ produz exclusÃ£o ou desgaste.",acao:"Plano de reduÃ§Ã£o de conflito + pertencimento social."},
+      "S2,S3":{codigo:"PS10",leitura:"FrustraÃ§Ã£o vira impulsividade.",acao:"Pausa combinada e regra de seguranÃ§a: sentir pode, agredir nÃ£o."},
+      "S2,S4":{codigo:"PS11",leitura:"CrianÃ§a explode e depois nÃ£o consegue reparar.",acao:"Separar momento de crise do momento de reparaÃ§Ã£o."},
+      "S2,S5":{codigo:"PS12",leitura:"Baixa tolerÃ¢ncia Ã  frustraÃ§Ã£o afeta pertencimento.",acao:"Treinar frustraÃ§Ã£o em situaÃ§Ãµes pequenas e previsÃ­veis."},
+      "S3,S4":{codigo:"PS13",leitura:"Impulsividade causa dano e reparaÃ§Ã£o falha.",acao:"Criar roteiro de reparaÃ§Ã£o simples e repetÃ­vel."},
+      "S3,S5":{codigo:"PS14",leitura:"Impulsividade leva Ã  rejeiÃ§Ã£o.",acao:"Reduzir episÃ³dios de alto impacto e orientar ambiente."},
+      "S4,S5":{codigo:"PS15",leitura:"Falta de reparaÃ§Ã£o mantÃ©m rejeiÃ§Ã£o ou afastamento.",acao:"ReparaÃ§Ã£o assistida e reconstruÃ§Ã£o de vÃ­nculo."},
+      "S1,S2,S3":{codigo:"PS16",leitura:"Conflito, frustraÃ§Ã£o e impulsividade formam ciclo rÃ¡pido.",acao:"Plano de RegulaÃ§Ã£o e ReparaÃ§Ã£o com foco em prevenÃ§Ã£o."},
+      "S1,S2,S4":{codigo:"PS17",leitura:"Conflito por frustraÃ§Ã£o sem reparaÃ§Ã£o suficiente.",acao:"Pausa + retomada pÃ³s-crise + reparaÃ§Ã£o."},
+      "S1,S2,S5":{codigo:"PS18",leitura:"Conflitos por frustraÃ§Ã£o prejudicam pertencimento.",acao:"Reduzir exposiÃ§Ã£o a gatilhos sem treino e criar contexto de sucesso social."},
+      "S1,S3,S4":{codigo:"PS19",leitura:"Conflito impulsivo com falha de reparaÃ§Ã£o.",acao:"Interromper padrÃ£o antes, durante e depois do episÃ³dio."},
+      "S1,S3,S5":{codigo:"PS20",leitura:"Conflito impulsivo gerando rejeiÃ§Ã£o.",acao:"Plano de seguranÃ§a social e alinhamento com escola/famÃ­lia."},
+      "S1,S4,S5":{codigo:"PS21",leitura:"Conflitos sem reparaÃ§Ã£o sustentam exclusÃ£o.",acao:"ReparaÃ§Ã£o guiada + reconstruÃ§Ã£o gradual de confianÃ§a."},
+      "S2,S3,S4":{codigo:"PS22",leitura:"FrustraÃ§Ã£o, impulsividade e reparaÃ§Ã£o ruim.",acao:"Treinar frase de pausa e roteiro pÃ³s-episÃ³dio."},
+      "S2,S3,S5":{codigo:"PS23",leitura:"FrustraÃ§Ã£o impulsiva jÃ¡ impacta pertencimento.",acao:"Plano de pertencimento com ambientes estruturados."},
+      "S2,S4,S5":{codigo:"PS24",leitura:"ExplosÃ£o emocional sem reparaÃ§Ã£o gera afastamento.",acao:"Trabalhar reparaÃ§Ã£o depois de acalmar; nÃ£o exigir insight no pico."},
+      "S3,S4,S5":{codigo:"PS25",leitura:"Impulsividade e ausÃªncia de reparaÃ§Ã£o geram rejeiÃ§Ã£o.",acao:"ReduÃ§Ã£o de dano social + treino de reparaÃ§Ã£o + supervisÃ£o."},
+      "S1,S2,S3,S4":{codigo:"PS26",leitura:"Ciclo completo de conflito sem pertencimento como queixa central.",acao:"Suporte prioritÃ¡rio: prevenir escalada e reparar depois."},
+      "S1,S2,S3,S5":{codigo:"PS27",leitura:"Conflito impulsivo com prejuÃ­zo social relevante.",acao:"Suporte intensivo se houver agressÃ£o ou exclusÃ£o."},
+      "S1,S2,S4,S5":{codigo:"PS28",leitura:"Conflito emocional sem reparaÃ§Ã£o e com exclusÃ£o.",acao:"Plano de RegulaÃ§Ã£o e ReparaÃ§Ã£o + Pertencimento."},
+      "S1,S3,S4,S5":{codigo:"PS29",leitura:"Conflito impulsivo, sem reparaÃ§Ã£o, com dano social.",acao:"Alta prioridade: reduzir dano, alinhar adultos e escola."},
+      "S2,S3,S4,S5":{codigo:"PS30",leitura:"FrustraÃ§Ã£o/impulsividade sem reparaÃ§Ã£o e com isolamento.",acao:"Plano intensivo de regulaÃ§Ã£o e pertencimento."},
+      "S1,S2,S3,S4,S5":{codigo:"PS31",leitura:"Pilar Social em suporte intensivo. Exige plano de seguranÃ§a, regulaÃ§Ã£o e reparaÃ§Ã£o.",acao:"Plano de seguranÃ§a, regulaÃ§Ã£o e reparaÃ§Ã£o obrigatÃ³rios."}
     },
-    moduladores:{S1:"Mapear frequência e contexto dos conflitos.",S2:"Incluir treino de tolerância à frustração.",S3:"Incluir estratégia de pausa antes da resposta impulsiva.",S4:"Incluir reparação simples pós-episódio.",S5:"Monitorar pertencimento e sinais de isolamento."},
-    estrategias:{S1:["Mapa de Gatilhos Sociais","Regra da casa","Consequência previsível"],S2:["Pausa Social Combinada","Tolerância à frustração","Protocolo de pausa","Limite calmo"],S3:["Pausa Social Combinada","Regra de segurança social","Redução de linguagem","Protocolo de pausa"],S4:["Treino de Reparação","Reparação assistida","Retomada pós-crise"],S5:["Plano de Pertencimento","Redução de dano social","Reparação assistida"]}
+    moduladores:{S1:"Mapear frequÃªncia e contexto dos conflitos.",S2:"Incluir treino de tolerÃ¢ncia Ã  frustraÃ§Ã£o.",S3:"Incluir estratÃ©gia de pausa antes da resposta impulsiva.",S4:"Incluir reparaÃ§Ã£o simples pÃ³s-episÃ³dio.",S5:"Monitorar pertencimento e sinais de isolamento."},
+    estrategias:{S1:["Mapa de Gatilhos Sociais","Regra da casa","ConsequÃªncia previsÃ­vel"],S2:["Pausa Social Combinada","TolerÃ¢ncia Ã  frustraÃ§Ã£o","Protocolo de pausa","Limite calmo"],S3:["Pausa Social Combinada","Regra de seguranÃ§a social","ReduÃ§Ã£o de linguagem","Protocolo de pausa"],S4:["Treino de ReparaÃ§Ã£o","ReparaÃ§Ã£o assistida","Retomada pÃ³s-crise"],S5:["Plano de Pertencimento","ReduÃ§Ã£o de dano social","ReparaÃ§Ã£o assistida"]}
   },
-  F_AUTONOMIA:{nome:"Autonomia, Funções Executivas e Desenvolvimento",codigo:"A",cor:"#FBBF24",
+  F_AUTONOMIA:{nome:"Autonomia, FunÃ§Ãµes Executivas e Desenvolvimento",codigo:"A",cor:"#FBBF24",
     campos:["aut_01","aut_02","aut_03","aut_04","aut_05"],
     itens:["A1","A2","A3","A4","A5"],
-    descricoes:["Criança depende de adulto para iniciar tarefas simples","Pais organizam mochila, agenda, materiais ou tarefas com muita frequência","Criança esquece combinados, perde prazos ou não sustenta responsabilidades","Dificuldade com planejamento, tempo, sequência de passos ou conclusão","Pais receiam estar fazendo pela criança o que ela precisa aprender com apoio"],
-    blocos:{A1:"Início Assistido",A2:"Organização de Materiais",A3:"Sistema de Memória Externa",A4:"Sequência e Tempo",A5:"Escada de Autonomia"},
+    descricoes:["CrianÃ§a depende de adulto para iniciar tarefas simples","Pais organizam mochila, agenda, materiais ou tarefas com muita frequÃªncia","CrianÃ§a esquece combinados, perde prazos ou nÃ£o sustenta responsabilidades","Dificuldade com planejamento, tempo, sequÃªncia de passos ou conclusÃ£o","Pais receiam estar fazendo pela crianÃ§a o que ela precisa aprender com apoio"],
+    blocos:{A1:"InÃ­cio Assistido",A2:"OrganizaÃ§Ã£o de Materiais",A3:"Sistema de MemÃ³ria Externa",A4:"SequÃªncia e Tempo",A5:"Escada de Autonomia"},
     combinacoes:{
-      "":{codigo:"PA00",leitura:"Sem pressão alta isolada. Manutenção ativa de autonomia.",acao:"Escolher uma microhabilidade e manter treino preventivo."},
-      "A1":{codigo:"PA01",leitura:"A principal barreira é iniciar.",acao:"Usar Início Assistido e primeiro passo concreto."},
-      "A2":{codigo:"PA02",leitura:"Adultos sustentam organização material.",acao:"Criar Organização de Materiais com checklist."},
-      "A3":{codigo:"PA03",leitura:"Memória operacional e responsabilidade estão frágeis.",acao:"Usar Sistema de Memória Externa."},
-      "A4":{codigo:"PA04",leitura:"Planejamento, tempo e sequência são o eixo.",acao:"Usar Sequência e Tempo com passos visuais."},
-      "A5":{codigo:"PA05",leitura:"Pais percebem dependência executiva.",acao:"Acionar Escada de Autonomia e reduzir ajuda gradualmente."},
-      "A1,A2":{codigo:"PA06",leitura:"Criança não inicia e adultos organizam por ela.",acao:"Início assistido + checklist de material."},
-      "A1,A3":{codigo:"PA07",leitura:"Falha em iniciar e lembrar combinados.",acao:"Primeiro passo concreto + memória externa."},
-      "A1,A4":{codigo:"PA08",leitura:"Início prejudicado por dificuldade de planejar sequência.",acao:"Dividir tarefa em etapas e começar junto."},
-      "A1,A5":{codigo:"PA09",leitura:"Pais iniciam pela criança para evitar travamento.",acao:"Adulto inicia junto, mas não substitui execução."},
-      "A2,A3":{codigo:"PA10",leitura:"Organização e memória dependem dos pais.",acao:"Checklist diário e conferência posterior."},
-      "A2,A4":{codigo:"PA11",leitura:"Material e sequência estão desorganizados.",acao:"Criar rotina de organização em passos fixos."},
-      "A2,A5":{codigo:"PA12",leitura:"Pais estão organizando demais.",acao:"Transferir uma etapa de organização para a criança."},
-      "A3,A4":{codigo:"PA13",leitura:"Esquecimento associado a falha de planejamento.",acao:"Sistema externo de prazos + sequência visual."},
-      "A3,A5":{codigo:"PA14",leitura:"Pais compensam esquecimentos cronicamente.",acao:"Reduzir lembrete verbal e usar memória externa."},
-      "A4,A5":{codigo:"PA15",leitura:"Pais assumem porque planejamento da criança falha.",acao:"Escada de autonomia focada em sequência de passos."},
-      "A1,A2,A3":{codigo:"PA16",leitura:"Início, organização e memória dependem do adulto.",acao:"Uma rotina executiva por vez."},
-      "A1,A2,A4":{codigo:"PA17",leitura:"Início, material e sequência frágeis.",acao:"Preparar ambiente + checklist + início assistido."},
-      "A1,A2,A5":{codigo:"PA18",leitura:"Adultos organizam e iniciam pela criança.",acao:"Definir o que o adulto deixará de fazer nesta semana."},
-      "A1,A3,A4":{codigo:"PA19",leitura:"A criança trava por falha executiva ampla.",acao:"Tarefa curta com suporte visual e temporizador."},
-      "A1,A3,A5":{codigo:"PA20",leitura:"Pais compensam início e memória.",acao:"Transferir lembrete para sistema externo, não para bronca."},
-      "A1,A4,A5":{codigo:"PA21",leitura:"Pais substituem porque iniciar e sequenciar é difícil.",acao:"Adulto faz junto apenas o primeiro passo e retira ajuda."},
-      "A2,A3,A4":{codigo:"PA22",leitura:"Organização, memória e planejamento pressionados.",acao:"Criar central executiva: agenda, checklist e conferência."},
-      "A2,A3,A5":{codigo:"PA23",leitura:"Pais viraram sistema de organização e memória.",acao:"Redução de ajuda adulta com checklist compartilhado."},
-      "A2,A4,A5":{codigo:"PA24",leitura:"Pais organizam porque a sequência falha.",acao:"Ensinar sequência de organização em 3 passos."},
-      "A3,A4,A5":{codigo:"PA25",leitura:"Pais compensam memória e planejamento.",acao:"Sistema de memória externa + escada de autonomia."},
-      "A1,A2,A3,A4":{codigo:"PA26",leitura:"Funções executivas operacionais pressionadas.",acao:"Mostrar à família que há dependência funcional mesmo que não perceba."},
-      "A1,A2,A3,A5":{codigo:"PA27",leitura:"Pais percebem dependência em início, organização e memória.",acao:"Transferir uma microhabilidade por ciclo."},
-      "A1,A2,A4,A5":{codigo:"PA28",leitura:"Pais substituem início, material e planejamento.",acao:"Escada de autonomia com início assistido e checklist."},
-      "A1,A3,A4,A5":{codigo:"PA29",leitura:"Dependência ampla em iniciar, lembrar e planejar.",acao:"Não cobrar autonomia total; treinar sequência mínima."},
-      "A2,A3,A4,A5":{codigo:"PA30",leitura:"Pais sustentam organização, memória e planejamento.",acao:"Reduzir carga parental com sistema externo e conferência posterior."},
-      "A1,A2,A3,A4,A5":{codigo:"PA31",leitura:"Pilar Autonomia em suporte intensivo.",acao:"Parar de substituir e começar a treinar em microetapas."}
+      "":{codigo:"PA00",leitura:"Sem pressÃ£o alta isolada. ManutenÃ§Ã£o ativa de autonomia.",acao:"Escolher uma microhabilidade e manter treino preventivo."},
+      "A1":{codigo:"PA01",leitura:"A principal barreira Ã© iniciar.",acao:"Usar InÃ­cio Assistido e primeiro passo concreto."},
+      "A2":{codigo:"PA02",leitura:"Adultos sustentam organizaÃ§Ã£o material.",acao:"Criar OrganizaÃ§Ã£o de Materiais com checklist."},
+      "A3":{codigo:"PA03",leitura:"MemÃ³ria operacional e responsabilidade estÃ£o frÃ¡geis.",acao:"Usar Sistema de MemÃ³ria Externa."},
+      "A4":{codigo:"PA04",leitura:"Planejamento, tempo e sequÃªncia sÃ£o o eixo.",acao:"Usar SequÃªncia e Tempo com passos visuais."},
+      "A5":{codigo:"PA05",leitura:"Pais percebem dependÃªncia executiva.",acao:"Acionar Escada de Autonomia e reduzir ajuda gradualmente."},
+      "A1,A2":{codigo:"PA06",leitura:"CrianÃ§a nÃ£o inicia e adultos organizam por ela.",acao:"InÃ­cio assistido + checklist de material."},
+      "A1,A3":{codigo:"PA07",leitura:"Falha em iniciar e lembrar combinados.",acao:"Primeiro passo concreto + memÃ³ria externa."},
+      "A1,A4":{codigo:"PA08",leitura:"InÃ­cio prejudicado por dificuldade de planejar sequÃªncia.",acao:"Dividir tarefa em etapas e comeÃ§ar junto."},
+      "A1,A5":{codigo:"PA09",leitura:"Pais iniciam pela crianÃ§a para evitar travamento.",acao:"Adulto inicia junto, mas nÃ£o substitui execuÃ§Ã£o."},
+      "A2,A3":{codigo:"PA10",leitura:"OrganizaÃ§Ã£o e memÃ³ria dependem dos pais.",acao:"Checklist diÃ¡rio e conferÃªncia posterior."},
+      "A2,A4":{codigo:"PA11",leitura:"Material e sequÃªncia estÃ£o desorganizados.",acao:"Criar rotina de organizaÃ§Ã£o em passos fixos."},
+      "A2,A5":{codigo:"PA12",leitura:"Pais estÃ£o organizando demais.",acao:"Transferir uma etapa de organizaÃ§Ã£o para a crianÃ§a."},
+      "A3,A4":{codigo:"PA13",leitura:"Esquecimento associado a falha de planejamento.",acao:"Sistema externo de prazos + sequÃªncia visual."},
+      "A3,A5":{codigo:"PA14",leitura:"Pais compensam esquecimentos cronicamente.",acao:"Reduzir lembrete verbal e usar memÃ³ria externa."},
+      "A4,A5":{codigo:"PA15",leitura:"Pais assumem porque planejamento da crianÃ§a falha.",acao:"Escada de autonomia focada em sequÃªncia de passos."},
+      "A1,A2,A3":{codigo:"PA16",leitura:"InÃ­cio, organizaÃ§Ã£o e memÃ³ria dependem do adulto.",acao:"Uma rotina executiva por vez."},
+      "A1,A2,A4":{codigo:"PA17",leitura:"InÃ­cio, material e sequÃªncia frÃ¡geis.",acao:"Preparar ambiente + checklist + inÃ­cio assistido."},
+      "A1,A2,A5":{codigo:"PA18",leitura:"Adultos organizam e iniciam pela crianÃ§a.",acao:"Definir o que o adulto deixarÃ¡ de fazer nesta semana."},
+      "A1,A3,A4":{codigo:"PA19",leitura:"A crianÃ§a trava por falha executiva ampla.",acao:"Tarefa curta com suporte visual e temporizador."},
+      "A1,A3,A5":{codigo:"PA20",leitura:"Pais compensam inÃ­cio e memÃ³ria.",acao:"Transferir lembrete para sistema externo, nÃ£o para bronca."},
+      "A1,A4,A5":{codigo:"PA21",leitura:"Pais substituem porque iniciar e sequenciar Ã© difÃ­cil.",acao:"Adulto faz junto apenas o primeiro passo e retira ajuda."},
+      "A2,A3,A4":{codigo:"PA22",leitura:"OrganizaÃ§Ã£o, memÃ³ria e planejamento pressionados.",acao:"Criar central executiva: agenda, checklist e conferÃªncia."},
+      "A2,A3,A5":{codigo:"PA23",leitura:"Pais viraram sistema de organizaÃ§Ã£o e memÃ³ria.",acao:"ReduÃ§Ã£o de ajuda adulta com checklist compartilhado."},
+      "A2,A4,A5":{codigo:"PA24",leitura:"Pais organizam porque a sequÃªncia falha.",acao:"Ensinar sequÃªncia de organizaÃ§Ã£o em 3 passos."},
+      "A3,A4,A5":{codigo:"PA25",leitura:"Pais compensam memÃ³ria e planejamento.",acao:"Sistema de memÃ³ria externa + escada de autonomia."},
+      "A1,A2,A3,A4":{codigo:"PA26",leitura:"FunÃ§Ãµes executivas operacionais pressionadas.",acao:"Mostrar Ã  famÃ­lia que hÃ¡ dependÃªncia funcional mesmo que nÃ£o perceba."},
+      "A1,A2,A3,A5":{codigo:"PA27",leitura:"Pais percebem dependÃªncia em inÃ­cio, organizaÃ§Ã£o e memÃ³ria.",acao:"Transferir uma microhabilidade por ciclo."},
+      "A1,A2,A4,A5":{codigo:"PA28",leitura:"Pais substituem inÃ­cio, material e planejamento.",acao:"Escada de autonomia com inÃ­cio assistido e checklist."},
+      "A1,A3,A4,A5":{codigo:"PA29",leitura:"DependÃªncia ampla em iniciar, lembrar e planejar.",acao:"NÃ£o cobrar autonomia total; treinar sequÃªncia mÃ­nima."},
+      "A2,A3,A4,A5":{codigo:"PA30",leitura:"Pais sustentam organizaÃ§Ã£o, memÃ³ria e planejamento.",acao:"Reduzir carga parental com sistema externo e conferÃªncia posterior."},
+      "A1,A2,A3,A4,A5":{codigo:"PA31",leitura:"Pilar Autonomia em suporte intensivo.",acao:"Parar de substituir e comeÃ§ar a treinar em microetapas."}
     },
-    moduladores:{A1:"Incluir primeiro passo concreto.",A2:"Introduzir checklist de materiais.",A3:"Usar memória externa para combinados e prazos.",A4:"Dividir tarefas em sequência curta.",A5:"Discutir redução gradual de ajuda adulta."},
-    estrategias:{A1:["Início Assistido","Primeiro passo concreto","Scaffolding / andaime","Tarefa de 2 minutos"],A2:["Organização de Materiais","Checklist visual","Central Executiva","Conferência posterior"],A3:["Sistema de Memória Externa","Externalização da informação","Central Executiva","Checklist visual"],A4:["Sequência e Tempo","Tempo externo","Tarefa de 5 minutos","Preparação ambiental"],A5:["Escada de autonomia","Transferência gradual","Microhabilidade","Ajuda mínima necessária","Conferência posterior"]}
+    moduladores:{A1:"Incluir primeiro passo concreto.",A2:"Introduzir checklist de materiais.",A3:"Usar memÃ³ria externa para combinados e prazos.",A4:"Dividir tarefas em sequÃªncia curta.",A5:"Discutir reduÃ§Ã£o gradual de ajuda adulta."},
+    estrategias:{A1:["InÃ­cio Assistido","Primeiro passo concreto","Scaffolding / andaime","Tarefa de 2 minutos"],A2:["OrganizaÃ§Ã£o de Materiais","Checklist visual","Central Executiva","ConferÃªncia posterior"],A3:["Sistema de MemÃ³ria Externa","ExternalizaÃ§Ã£o da informaÃ§Ã£o","Central Executiva","Checklist visual"],A4:["SequÃªncia e Tempo","Tempo externo","Tarefa de 5 minutos","PreparaÃ§Ã£o ambiental"],A5:["Escada de autonomia","TransferÃªncia gradual","Microhabilidade","Ajuda mÃ­nima necessÃ¡ria","ConferÃªncia posterior"]}
   }
 };
 
-const NIVEL_LABEL=["","Nível 1 — Manutenção ativa","Nível 2 — Suporte preventivo-focal","Nível 3 — Suporte prioritário","Nível 4 — Suporte intensivo"];
+const NIVEL_LABEL=["","NÃ­vel 1 â ManutenÃ§Ã£o ativa","NÃ­vel 2 â Suporte preventivo-focal","NÃ­vel 3 â Suporte prioritÃ¡rio","NÃ­vel 4 â Suporte intensivo"];
 
-// ─── PARSER ROBUSTO ──────────────────────────────────────────────────────────
-// Linhas que o Formspree injeta e não são campos reais
+// âââ PARSER ROBUSTO ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Linhas que o Formspree injeta e nÃ£o sÃ£o campos reais
 const LINHAS_LIXO = /^(_status|pessoafabio@|May\s+\d|[A-Z][a-z]+\s+\d{1,2},\s+\d{4})/i;
-// Chaves que não são dados de formulário
+// Chaves que nÃ£o sÃ£o dados de formulÃ¡rio
 const CHAVES_IGNORAR = /^(pessoafabio|_status|resultado_)/;
 
 function parsePayload(txt) {
   const obj = {};
-  const lines = txt.split("\n").map(l => l.trim()).filter(Boolean);
-  let key = null;
-  for (const line of lines) {
-    // Ignora linhas de lixo antes de processá-las como valor
-    if (LINHAS_LIXO.test(line) && !line.startsWith("* ")) { key = null; continue; }
-    if (line.startsWith("* ")) {
-      key = line.slice(2).trim();
-      if (CHAVES_IGNORAR.test(key)) { key = null; continue; }
-      obj[key] = "";
-    } else if (key) {
-      // Concatena mas ignora tokens de lixo inline (ex: "Sim _status")
-      const clean = line.replace(/\s*_status\s*/gi,"").trim();
-      if (clean) obj[key] = (obj[key] ? obj[key] + " " : "") + clean;
+  const raw = txt.replace(/^[A-Z][a-z]{2,8}\s+\d{1,2},\s+\d{4},.*[\n\r]+/, '').trim();
+  if (raw.indexOf('* ') !== -1) {
+    var lines = raw.split('\n').map(function(l){return l.trim();}).filter(function(l){return l;});
+    var key = null;
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].indexOf('* ') === 0) { key = lines[i].slice(2).trim().replace(/-/g,'_'); obj[key]=''; }
+      else if (key) { var cl=lines[i].replace(/\b_status\b/g,'').trim(); if(cl) obj[key]=obj[key]?obj[key]+' '+cl:cl; }
+    }
+  } else {
+    var blocos = raw.split(/\n\s*\n/);
+    if (blocos.length >= 2) {
+      for (var i=0;i<blocos.length-1;i+=2) {
+        var ch=blocos[i].trim().replace(/-/g,'_');
+        var vl=blocos[i+1].trim();
+        if (ch&&vl&&ch.indexOf(' ')===-1&&!/^[A-Z]/.test(ch)) obj[ch]=vl;
+      }
+    }
+    if (Object.keys(obj).length===0) {
+      var lines=raw.split('\n').map(function(l){return l.trim();}).filter(function(l){return l;});
+      for (var i=0;i<lines.length-1;i+=2) {
+        var ch=lines[i].replace(/-/g,'_');
+        var vl=lines[i+1];
+        if (ch&&vl&&ch.indexOf(' ')===-1&&!/^[A-Z]/.test(ch)) obj[ch]=vl;
+      }
     }
   }
-  // Normalizar hífens → underscore
-  const norm = {};
-  for (const [k,v] of Object.entries(obj)) norm[k.replace(/-/g,"_")] = v.trim();
-  // Detectar formulário pelo subject se id_formulario ausente
-  if (!norm.id_formulario && norm._subject) {
-    const s = norm._subject;
-    if (/casa|rotina/i.test(s))       norm.id_formulario = "F_CASA";
-    else if (/medica/i.test(s))       norm.id_formulario = "F_MEDICACAO";
-    else if (/escola|aprendiz/i.test(s)) norm.id_formulario = "F_ESCOLA";
-    else if (/social|emocional/i.test(s)) norm.id_formulario = "F_SOCIAL";
-    else if (/autonomia|execut/i.test(s)) norm.id_formulario = "F_AUTONOMIA";
+  var norm={};
+  for (var k in obj) norm[k.replace(/-/g,'_')]=obj[k];
+  if (!norm.id_formulario&&norm._subject) {
+    var s=norm._subject.toLowerCase();
+    if (s.indexOf('medica')!==-1||s.indexOf('f-medic')!==-1) norm.id_formulario='F_MEDICACAO';
+    else if (s.indexOf('casa')!==-1||s.indexOf('rotina')!==-1) norm.id_formulario='F_CASA';
+    else if (s.indexOf('escola')!==-1) norm.id_formulario='F_ESCOLA';
+    else if (s.indexOf('social')!==-1||s.indexOf('emocion')!==-1) norm.id_formulario='F_SOCIAL';
+    else if (s.indexOf('autonomia')!==-1) norm.id_formulario='F_AUTONOMIA';
   }
   return norm;
 }
 
-// ─── MOTOR ────────────────────────────────────────────────────────────────────
-function processar(payload) {
+// âââ MOTOR ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+function processarLogica(payload) {
   const id = payload.id_formulario;
   const pilar = PILARES[id];
   if (!pilar) return null;
@@ -498,33 +507,33 @@ function processar(payload) {
   return {
     pilar,id,nivel,soma,altos,moderados,alertas,combinacao,blocos,
     estrategias:[...estSet],modsAtivos,prazo,escalonamentoClinico,
-    nomeCrianca:payload.nome_crianca||"—",
-    responsavel:payload.responsavel||"—",
-    idade:payload.idade||"—",
-    periodo:payload.periodo_observado||"—",
-    usaMedicacao:payload.usa_medicacao||"—",
-    mudancaRecente:payload.mudanca_recente||"—",
+    nomeCrianca:payload.nome_crianca||"â",
+    responsavel:payload.responsavel||"â",
+    idade:payload.idade||"â",
+    periodo:payload.periodo_observado||"â",
+    usaMedicacao:payload.usa_medicacao||"â",
+    mudancaRecente:payload.mudanca_recente||"â",
     pontuacoes
   };
 }
 
 function gerarDevolutiva(r) {
-  const esc = r.escalonamentoClinico?`🔴 ESCALONAMENTO CLÍNICO OBRIGATÓRIO\nNão enviar sem revisão do Dr. Fabio Pessoa.\n\n`:"";
-  const alertStr = r.alertas.length?`⚠ ALERTA ATIVO: ${r.alertas.join("; ")}\n\n`:"";
-  const mods = r.modsAtivos.length?`\nMODULADORES ATIVOS\n${r.modsAtivos.map(m=>`• ${m}`).join("\n")}`:"";
-  const ests = r.estrategias.length?`\n\nESTRATÉGIAS DO GLOSSÁRIO\n${r.estrategias.map(e=>`• ${e}`).join("\n")}`:"";
-  return `RASCUNHO DE DEVOLUTIVA — META360TDAH
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Criança : ${r.nomeCrianca} (${r.idade})
-Responsável : ${r.responsavel}
+  const esc = r.escalonamentoClinico?`ð´ ESCALONAMENTO CLÃNICO OBRIGATÃRIO\nNÃ£o enviar sem revisÃ£o do Dr. Fabio Pessoa.\n\n`:"";
+  const alertStr = r.alertas.length?`â  ALERTA ATIVO: ${r.alertas.join("; ")}\n\n`:"";
+  const mods = r.modsAtivos.length?`\nMODULADORES ATIVOS\n${r.modsAtivos.map(m=>`â¢ ${m}`).join("\n")}`:"";
+  const ests = r.estrategias.length?`\n\nESTRATÃGIAS DO GLOSSÃRIO\n${r.estrategias.map(e=>`â¢ ${e}`).join("\n")}`:"";
+  return `RASCUNHO DE DEVOLUTIVA â META360TDAH
+âââââââââââââââââââââââââââââââ
+CrianÃ§a : ${r.nomeCrianca} (${r.idade})
+ResponsÃ¡vel : ${r.responsavel}
 Pilar : ${r.pilar.nome}
-Período : ${r.periodo}
+PerÃ­odo : ${r.periodo}
 Gerado em : ${new Date().toLocaleDateString("pt-BR")}
 
 ${alertStr}${esc}RESULTADO
-Pontuação  : ${r.soma}/25
-Nível      : ${NIVEL_LABEL[r.nivel]}
-Padrão     : ${r.combinacao.codigo}
+PontuaÃ§Ã£o  : ${r.soma}/25
+NÃ­vel      : ${NIVEL_LABEL[r.nivel]}
+PadrÃ£o     : ${r.combinacao.codigo}
 Itens altos: ${r.altos.join(", ")||"nenhum"}
 Moderados  : ${r.moderados.join(", ")||"nenhum"}
 Alertas    : ${r.alertas.join("; ")||"nenhum"}
@@ -533,18 +542,18 @@ LEITURA INTERNA
 ${r.combinacao.leitura}
 
 PRIMEIRO MOVIMENTO
-→ ${r.combinacao.acao}
+â ${r.combinacao.acao}
 
 BLOCOS DE CUIDADO
-${r.blocos.join(" · ")||"Manutenção ativa"}${mods}${ests}
+${r.blocos.join(" Â· ")||"ManutenÃ§Ã£o ativa"}${mods}${ests}
 
-PRAZO DE REAVALIAÇÃO: ${r.prazo}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PRAZO DE REAVALIAÃÃO: ${r.prazo}
+âââââââââââââââââââââââââââââââ
 [Equipe: personalizar com contexto antes de enviar]`;
 }
 
 const EXEMPLO=`* _subject
-Novo resultado - F-Medicação
+Novo resultado - F-MedicaÃ§Ã£o
 * alertas
 []
 * alertas_resumo
@@ -564,15 +573,15 @@ F_MEDICACAO
 * med_05
 1
 * mudanca_recente
-Não
+NÃ£o
 * nome_crianca
-Exemplo de Criança
+Exemplo de CrianÃ§a
 * nome_formulario
-F-Medicação
+F-MedicaÃ§Ã£o
 * periodo_observado
-Últimos 14 dias
+Ãltimos 14 dias
 * responsavel
-Responsável Exemplo
+ResponsÃ¡vel Exemplo
 * usa_medicacao
 Sim
 _status`;
@@ -594,16 +603,16 @@ function processar() {
   erroEl.className = 'erro-msg';
   let payload;
   try { payload = parsePayload(input); } catch(e) { mostrarErro('Erro ao ler payload: '+e.message); return; }
-  if (!payload.id_formulario) { mostrarErro('Formulário não identificado. Verifique se o e-mail contém o campo id_formulario ou um subject com o nome do pilar (ex: F-Medicação, F-Casa...).'); return; }
-  const r = processar(payload);
-  if (!r) { mostrarErro('Pilar não reconhecido: '+payload.id_formulario); return; }
+  if (!payload.id_formulario) { mostrarErro('FormulÃ¡rio nÃ£o identificado. Verifique se o e-mail contÃ©m o campo id_formulario ou um subject com o nome do pilar (ex: F-MedicaÃ§Ã£o, F-Casa...).'); return; }
+  const r = processarLogica(payload);
+  if (!r) { mostrarErro('Pilar nÃ£o reconhecido: '+payload.id_formulario); return; }
   resultadoAtual = r;
   renderResultado(r);
 }
 
 function mostrarErro(msg) {
   const el = document.getElementById('erro-msg');
-  el.textContent = '⚠ '+msg;
+  el.textContent = 'â  '+msg;
   el.className = 'erro-msg show';
 }
 
@@ -620,8 +629,8 @@ function renderResultado(r) {
   pill.style.color = r.pilar.cor;
   const ab = document.getElementById('alert-banner');
   const eb = document.getElementById('esc-banner');
-  if (r.alertas.length) { ab.textContent='⚠ Alerta ativo: '+r.alertas.join(' · ')+' — encurtar prazo e considerar contato clínico.'; ab.className='alert-banner show'; } else { ab.className='alert-banner'; }
-  if (r.escalonamentoClinico) { eb.textContent='🔴 Escalonamento clínico obrigatório. Pilar Medicamentoso nível '+r.nivel+' ou alerta ativo. Não enviar sem revisão do Dr. Fabio Pessoa.'; eb.className='esc-banner show'; } else { eb.className='esc-banner'; }
+  if (r.alertas.length) { ab.textContent='â  Alerta ativo: '+r.alertas.join(' Â· ')+' â encurtar prazo e considerar contato clÃ­nico.'; ab.className='alert-banner show'; } else { ab.className='alert-banner'; }
+  if (r.escalonamentoClinico) { eb.textContent='ð´ Escalonamento clÃ­nico obrigatÃ³rio. Pilar Medicamentoso nÃ­vel '+r.nivel+' ou alerta ativo. NÃ£o enviar sem revisÃ£o do Dr. Fabio Pessoa.'; eb.className='esc-banner show'; } else { eb.className='esc-banner'; }
   const nEl = document.getElementById('res-nivel');
   nEl.textContent = NIVEL_LABEL[r.nivel];
   nEl.className = 'level-tag '+NIVEL_CLASS[r.nivel];
@@ -629,14 +638,14 @@ function renderResultado(r) {
   document.getElementById('res-leitura').textContent = r.combinacao.leitura;
   document.getElementById('res-acao').textContent    = r.combinacao.acao;
   const bEl = document.getElementById('res-blocos');
-  bEl.innerHTML = r.blocos.length ? r.blocos.map(b=>`<span class="chip chip-bloco">${b}</span>`).join('') : '<span style="font-size:.82rem;color:var(--text-muted)">Manutenção ativa</span>';
+  bEl.innerHTML = r.blocos.length ? r.blocos.map(b=>`<span class="chip chip-bloco">${b}</span>`).join('') : '<span style="font-size:.82rem;color:var(--text-muted)">ManutenÃ§Ã£o ativa</span>';
   const mEl = document.getElementById('res-mods');
   const mBl = document.getElementById('res-mods-block');
-  if (r.modsAtivos.length) { mEl.innerHTML = r.modsAtivos.map(m=>`<div style="padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.82rem;color:var(--slate-100)">· ${m}</div>`).join(''); mBl.style.display=''; } else { mBl.style.display='none'; }
+  if (r.modsAtivos.length) { mEl.innerHTML = r.modsAtivos.map(m=>`<div style="padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.82rem;color:var(--slate-100)">Â· ${m}</div>`).join(''); mBl.style.display=''; } else { mBl.style.display='none'; }
   document.getElementById('res-prazo').textContent = r.prazo;
-  document.getElementById('res-pontuacoes').innerHTML = r.pontuacoes.map(p=>`<div style="display:flex;gap:10px;align-items:flex-start;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.05)"><div style="min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;flex-shrink:0;background:${p.nota>=4?'rgba(239,68,68,.12)':p.nota===3?'rgba(251,191,36,.1)':'rgba(255,255,255,.04)'};color:${p.nota>=4?'#fca5a5':p.nota===3?'#fcd34d':'var(--text-muted)'};">${p.nota}</div><div><div style="font-size:.84rem;font-weight:500;color:var(--slate-100)">${p.item} — ${p.desc}</div><div style="font-size:.75rem;margin-top:2px;color:${p.nota>=4?'#fca5a5':p.nota===3?'#fcd34d':'var(--text-muted)'}">${p.nota>=4?'Pressão alta — define padrão dominante':p.nota===3?(r.pilar.moduladores[p.item]||'Moderado'):'Pressão baixa'}</div></div></div>`).join('');
+  document.getElementById('res-pontuacoes').innerHTML = r.pontuacoes.map(p=>`<div style="display:flex;gap:10px;align-items:flex-start;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.05)"><div style="min-width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;flex-shrink:0;background:${p.nota>=4?'rgba(239,68,68,.12)':p.nota===3?'rgba(251,191,36,.1)':'rgba(255,255,255,.04)'};color:${p.nota>=4?'#fca5a5':p.nota===3?'#fcd34d':'var(--text-muted)'};">${p.nota}</div><div><div style="font-size:.84rem;font-weight:500;color:var(--slate-100)">${p.item} â ${p.desc}</div><div style="font-size:.75rem;margin-top:2px;color:${p.nota>=4?'#fca5a5':p.nota===3?'#fcd34d':'var(--text-muted)'}">${p.nota>=4?'PressÃ£o alta â define padrÃ£o dominante':p.nota===3?(r.pilar.moduladores[p.item]||'Moderado'):'PressÃ£o baixa'}</div></div></div>`).join('');
   const eEl = document.getElementById('res-estrategias');
-  eEl.innerHTML = r.estrategias.length ? r.estrategias.map(e=>`<span class="chip chip-strat">${e}</span>`).join('') : '<span style="font-size:.82rem;color:var(--text-muted)">Manutenção ativa.</span>';
+  eEl.innerHTML = r.estrategias.length ? r.estrategias.map(e=>`<span class="chip chip-strat">${e}</span>`).join('') : '<span style="font-size:.82rem;color:var(--text-muted)">ManutenÃ§Ã£o ativa.</span>';
   document.getElementById('res-devolutiva').textContent = gerarDevolutiva(r);
   document.getElementById('empty-state').className   = 'result-body hidden';
   document.getElementById('result-body').className    = 'result-body';
@@ -650,7 +659,7 @@ function carregarExemplo() {
   document.getElementById('empty-state').className   = 'result-body';
   document.getElementById('result-body').className    = 'result-body hidden';
   document.getElementById('result-actions').style.display = 'none';
-  document.getElementById('res-score').textContent = '—';
+  document.getElementById('res-score').textContent = 'â';
 }
 
 function limpar() {
@@ -659,7 +668,7 @@ function limpar() {
   document.getElementById('empty-state').className   = 'result-body';
   document.getElementById('result-body').className    = 'result-body hidden';
   document.getElementById('result-actions').style.display = 'none';
-  document.getElementById('res-score').textContent = '—';
+  document.getElementById('res-score').textContent = 'â';
   resultadoAtual = null;
 }
 
@@ -668,7 +677,7 @@ function copiarDevolutiva() {
   navigator.clipboard.writeText(gerarDevolutiva(resultadoAtual)).then(() => {
     const btn = document.getElementById('btn-copiar');
     const orig = btn.innerHTML;
-    btn.textContent = '✓ Copiado';
+    btn.textContent = 'â Copiado';
     btn.style.color = '#4ade80';
     setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; }, 2000);
   });
