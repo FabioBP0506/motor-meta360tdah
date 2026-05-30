@@ -441,46 +441,40 @@ const CHAVES_IGNORAR = /^(pessoafabio|_status|resultado_)/;
 
 function parsePayload(txt) {
   const obj = {};
-  const raw = txt.replace(/^[A-Z][a-z]{2,8}\s+\d{1,2},\s+\d{4},.*[\n\r]+/, '').trim();
+  const raw = txt.replace(/^[A-Za-z]{3}\s+\d{1,2},\s+\d{4}.*[\n\r]+/, '').trim();
   if (raw.indexOf('* ') !== -1) {
     var lines = raw.split('\n').map(function(l){return l.trim();}).filter(function(l){return l;});
     var key = null;
-    for (var i = 0; i < lines.length; i++) {
-      if (lines[i].indexOf('* ') === 0) { key = lines[i].slice(2).trim().replace(/-/g,'_'); obj[key]=''; }
-      else if (key) { var cl=lines[i].replace(/\b_status\b/g,'').trim(); if(cl) obj[key]=obj[key]?obj[key]+' '+cl:cl; }
+    for (var i=0; i<lines.length; i++) {
+      if (lines[i].startsWith('* ')) {
+        key = lines[i].slice(2).trim().replace(/-/g,'_');
+      } else if (key) {
+        obj[key] = lines[i];
+        key = null;
+      }
     }
   } else {
-    var blocos = raw.split(/\n\s*\n/);
-    if (blocos.length >= 2) {
-      for (var i=0;i<blocos.length-1;i+=2) {
-        var ch=blocos[i].trim().replace(/-/g,'_');
-        var vl=blocos[i+1].trim();
-        if (ch&&vl&&ch.indexOf(' ')===-1&&!/^[A-Z]/.test(ch)) obj[ch]=vl;
-      }
+    var blocos = raw.split(/\n\s*\n/).map(function(b){return b.trim();}).filter(function(b){return b;});
+    var startIdx = 0;
+    for (var s=0; s<blocos.length; s++) {
+      if (/^[a-z_][a-z0-9_]*$/.test(blocos[s])) { startIdx = s; break; }
     }
-    if (Object.keys(obj).length===0) {
-      var lines=raw.split('\n').map(function(l){return l.trim();}).filter(function(l){return l;});
-      for (var i=0;i<lines.length-1;i+=2) {
-        var ch=lines[i].replace(/-/g,'_');
-        var vl=lines[i+1];
-        if (ch&&vl&&ch.indexOf(' ')===-1&&!/^[A-Z]/.test(ch)) obj[ch]=vl;
+    for (var i=startIdx; i<blocos.length-1; i+=2) {
+      var ch = blocos[i].trim().replace(/-/g,'_');
+      var vl = blocos[i+1].trim();
+      if (ch && vl && /^[a-z_][a-z0-9_]*$/.test(ch)) obj[ch] = vl;
+    }
+    if (Object.keys(obj).length === 0 && blocos.length >= 2) {
+      for (var i=0; i<blocos.length-1; i+=2) {
+        var ch = blocos[i].trim().replace(/-/g,'_');
+        var vl = blocos[i+1].trim();
+        if (ch && vl && ch.indexOf(' ')===-1) obj[ch] = vl;
       }
     }
   }
-  var norm={};
-  for (var k in obj) norm[k.replace(/-/g,'_')]=obj[k];
-  if (!norm.id_formulario&&norm._subject) {
-    var s=norm._subject.toLowerCase();
-    if (s.indexOf('medica')!==-1||s.indexOf('f-medic')!==-1) norm.id_formulario='F_MEDICACAO';
-    else if (s.indexOf('casa')!==-1||s.indexOf('rotina')!==-1) norm.id_formulario='F_CASA';
-    else if (s.indexOf('escola')!==-1) norm.id_formulario='F_ESCOLA';
-    else if (s.indexOf('social')!==-1||s.indexOf('emocion')!==-1) norm.id_formulario='F_SOCIAL';
-    else if (s.indexOf('autonomia')!==-1) norm.id_formulario='F_AUTONOMIA';
-  }
-  return norm;
+  return obj;
 }
 
-// ─── MOTOR ────────────────────────────────────────────────────────────────────
 function processarLogica(payload) {
   const id = payload.id_formulario;
   const pilar = PILARES[id];
