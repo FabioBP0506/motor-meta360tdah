@@ -1,0 +1,168 @@
+{
+  "name": "META360TDAH — Formspree → Motor → Google Sheets",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {
+        "hook": "COLE_AQUI_O_WEBHOOK_ID_DO_MAKE",
+        "maxResults": 1
+      },
+      "mapper": {},
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        },
+        "restore": {
+          "parameters": {
+            "hook": {
+              "label": "META360TDAH Formspree Webhook",
+              "data": {
+                "editable": true
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hook",
+            "type": "hook:gateway-webhook",
+            "label": "Webhook",
+            "required": true
+          },
+          {
+            "name": "maxResults",
+            "type": "number",
+            "label": "Maximum number of results"
+          }
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "module": "http:ActionSendData",
+      "version": 3,
+      "parameters": {
+        "handleErrors": true,
+        "useNewZLibDecompression": true
+      },
+      "mapper": {
+        "url": "https://SEU-SITE.netlify.app/api/motor",
+        "serializeUrl": false,
+        "method": "post",
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "qs": [],
+        "bodyType": "raw",
+        "parseResponse": true,
+        "authUser": "",
+        "authPass": "",
+        "timeout": 30,
+        "shareCookies": false,
+        "ca": "",
+        "rejectUnauthorized": true,
+        "followRedirect": true,
+        "useQuerystring": false,
+        "gzip": true,
+        "useMtls": false,
+        "contentType": "application/json",
+        "body": "{{toJSON(1)}}",
+        "followAllRedirects": false
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0
+        },
+        "restore": {
+          "expect": {
+            "method": {
+              "label": "POST"
+            },
+            "bodyType": {
+              "label": "Raw"
+            },
+            "contentType": {
+              "label": "JSON (application/json)"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "google-sheets:addRow",
+      "version": 2,
+      "parameters": {
+        "useNewZLibDecompression": true
+      },
+      "mapper": {
+        "spreadsheetId": "COLE_AQUI_O_ID_DA_PLANILHA",
+        "sheetId": "META360TDAH - Resultados",
+        "includesHeaders": true,
+        "values": {
+          "Data": "{{2.data_envio}}",
+          "Criança": "{{2.nome_crianca}}",
+          "Responsável": "{{2.responsavel}}",
+          "Idade": "{{2.idade}}",
+          "Período": "{{2.periodo}}",
+          "Usa Medicação": "{{2.usa_medicacao}}",
+          "Pilar": "{{2.pilar}}",
+          "Pontuação": "{{2.pontuacao_total}}",
+          "Nível": "{{2.nivel_label}}",
+          "Padrão": "{{2.codigo_padrao}}",
+          "Itens Altos": "{{2.itens_altos}}",
+          "Itens Moderados": "{{2.itens_moderados}}",
+          "Alertas": "{{2.alertas}}",
+          "Alerta Ativo": "{{2.alerta_ativo}}",
+          "Escalonamento Clínico": "{{2.escalonamento_clinico}}",
+          "Leitura Interna": "{{2.leitura_interna}}",
+          "Primeiro Movimento": "{{2.primeiro_movimento}}",
+          "Blocos Indicados": "{{2.blocos_indicados}}",
+          "Prazo Reavaliação": "{{2.prazo_reavaliacao}}",
+          "Devolutiva": "{{2.devolutiva}}"
+        }
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0
+        },
+        "restore": {
+          "parameters": {
+            "spreadsheetId": {
+              "label": "META360TDAH - Resultados",
+              "data": {}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "autoCommitTriggerLast": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false,
+      "freshVariables": false
+    },
+    "designer": {
+      "orphans": []
+    },
+    "zone": "eu1.make.com"
+  }
+}
